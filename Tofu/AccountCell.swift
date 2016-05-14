@@ -32,6 +32,7 @@ private func imageForAccount(account: Account) -> UIImage {
   case .Some("FastMail"): return UIImage(named: "FastMail")!
   case .Some("GitHub"): return UIImage(named: "GitHub")!
   case .Some("Google"): return UIImage(named: "Google")!
+  case .Some("GreenAddress"): return UIImage(named: "GreenAddress")!
   case .Some("Heroku"): return UIImage(named: "Heroku")!
   case .Some("Hover"): return UIImage(named: "Hover")!
   case .Some("IFTTT"): return UIImage(named: "IFTTT")!
