@@ -32,6 +32,7 @@
 		25A81D571C5DFC5C008E51B9 /* ScanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A81D561C5DFC5C008E51B9 /* ScanningViewController.swift */; };
 		25A81D5B1C5F656A008E51B9 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A81D5A1C5F656A008E51B9 /* CircularProgressView.swift */; };
 		25CF8B6C1C57946B00665FFE /* AlgorithmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF8B6B1C57946B00665FFE /* AlgorithmsViewController.swift */; };
+		76777A29227A0B1800537331 /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76777A28227A0B1800537331 /* SwiftNotice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		25A81D561C5DFC5C008E51B9 /* ScanningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanningViewController.swift; sourceTree = "<group>"; };
 		25A81D5A1C5F656A008E51B9 /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		25CF8B6B1C57946B00665FFE /* AlgorithmsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgorithmsViewController.swift; sourceTree = "<group>"; };
+		76777A28227A0B1800537331 /* SwiftNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				25A81D441C53923D008E51B9 /* Data.swift */,
+				76777A28227A0B1800537331 /* SwiftNotice.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				25A81D101C500E9C008E51B9 /* AccountsViewController.swift in Sources */,
 				259FAC521C765F4B0013B4F7 /* AccountUpdateDelegate.swift in Sources */,
 				25A81D511C551F17008E51B9 /* AccountCell.swift in Sources */,
+				76777A29227A0B1800537331 /* SwiftNotice.swift in Sources */,
 				251A79871C7A68BC00E2747E /* AccountSearchResultsViewController.swift in Sources */,
 				25A81D0E1C500E9C008E51B9 /* AppDelegate.swift in Sources */,
 				25A81D451C53923D008E51B9 /* Data.swift in Sources */,
