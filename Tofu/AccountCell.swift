@@ -113,11 +113,20 @@ class AccountCell: UITableViewCell {
         button.setBackgroundImage(image, for: .selected)
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(didPressButton(_:)), for: .touchUpInside)
+        
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(didDoubleTap))
+        doubleTap.numberOfTapsRequired = 2
+        self.addGestureRecognizer(doubleTap)
     }
 
     @objc func didPressButton(_ sender: UIButton) {
         account.password.counter += 1
         delegate?.updateAccount(account)
+    }
+
+    @objc func didDoubleTap() {
+        self.noticeSuccess("Copied", autoClear: true)
+        UIPasteboard.general.string = account.password.valueForDate(Date())
     }
 
     func updateWithDate(_ date: Date) {
