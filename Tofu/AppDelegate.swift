@@ -21,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let alert = UIAlertController(
                 title: "Could not import account",
                 message: "The account information was not of the expected format.",
-                preferredStyle: UIAlertControllerStyle.alert
+                preferredStyle: .alert
             )
 
-            alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
 
             rootViewController.present(alert, animated: true, completion: nil)
             return false
@@ -33,8 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let accountsViewController = rootViewController.childViewControllers.first as! AccountsViewController
         
         accountsViewController.createAccount(account)
-        self.noticeOnlyText("Added account '\(account.description)'")
 
+        let alert = UIAlertController(
+            title: "Account Imported",
+            message: "Successfully imported \(account.description)",
+            preferredStyle: .alert
+        )
+
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        rootViewController.present(alert, animated: true, completion: nil)
+        
         return true
     }
 }

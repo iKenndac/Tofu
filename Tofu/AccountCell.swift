@@ -125,7 +125,6 @@ class AccountCell: UITableViewCell {
     }
 
     @objc func didDoubleTap() {
-        self.noticeSuccess("Copied", autoClear: true)
         UIPasteboard.general.string = account.password.valueForDate(Date())
     }
 
