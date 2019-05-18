@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let rootViewController = window!.rootViewController!
 
-        guard let account = Account(url: URL(fileURLWithPath: ".")) else {
+        guard let account = Account(url: url) else {
             let alert = UIAlertController(
                 title: "Could not import account",
                 message: "The account information was not of the expected format.",
@@ -30,10 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
 
-        let accountsViewController = rootViewController.childViewControllers
-            .filter({ $0 is AccountsViewController })
-            .map({ $0 as! AccountsViewController })
-            .first!
+        let accountsViewController = rootViewController.childViewControllers.first as! AccountsViewController
         
         accountsViewController.createAccount(account)
         self.noticeOnlyText("Added account '\(account.description)'")
