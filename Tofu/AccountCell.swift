@@ -41,22 +41,26 @@ private func imageForAccount(_ account: Account) -> UIImage {
     case .some("Evernote"): return UIImage(named: "Evernote")!
     case .some("Facebook"): return UIImage(named: "Facebook")!
     case .some("FastMail"): return UIImage(named: "FastMail")!
+    case .some("Firefox"): return UIImage(named: "Firefox")!
     case .some("GitHub"): return UIImage(named: "GitHub")!
     case .some("gitlab.com"): return UIImage(named: "GitLab")!
     case .some("Google"): return UIImage(named: "Google")!
     case .some("GreenAddress"): return UIImage(named: "GreenAddress")!
     case .some("Heroku"): return UIImage(named: "Heroku")!
+    case .some("Hostek"): return UIImage(named: "Hostek")!
     case .some("Hover"): return UIImage(named: "Hover")!
     case .some("HumbleBundle"): return UIImage(named: "HumbleBundle")!
     case .some("IFTTT"): return UIImage(named: "IFTTT")!
     case .some("Intercom"): return UIImage(named: "Intercom")!
     case .some("Kickstarter"): return UIImage(named: "Kickstarter")!
+    case .some("LinkedIn"): return UIImage(named: "LinkedIn")!
     case .some("LinodeManager"): return UIImage(named: "Linode")!
     case .some("LocalBitcoins"): return UIImage(named: "LocalBitcoins")!
     case .some("Microsoft"): return UIImage(named: "Microsoft")!
     case .some("Name.com"): return UIImage(named: "Name.com")!
     case .some("Nextcloud"): return UIImage(named: "Nextcloud")!
     case .some("ownCloud"): return UIImage(named: "ownCloud")!
+    case .some("Paladin Extensions"): return UIImage(named: "PaladinExtensions")!
     case .some("Privacy.com"): return UIImage(named: "Privacy")!
     case .some("ProtonMail"): return UIImage(named: "ProtonMail")!
     case .some("Slack"): return UIImage(named: "Slack")!
@@ -65,7 +69,6 @@ private func imageForAccount(_ account: Account) -> UIImage {
     case .some("Tumblr"): return UIImage(named: "Tumblr")!
     case .some("Ubisoft"): return UIImage(named: "Ubisoft")!
     case .some("WordPress"): return UIImage(named: "WordPress")!
-    case .some("www.fastmail.com"): return UIImage(named: "FastMail")!
     default:
         let text = String(account.description.first ?? "?").uppercased()
         return placeholderImageWithText(text)
