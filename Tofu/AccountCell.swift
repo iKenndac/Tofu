@@ -40,7 +40,7 @@ private func imageForAccount(_ account: Account) -> UIImage {
     case .some("Epic+Games"): return UIImage(named: "EpicGames")!
     case .some("Evernote"): return UIImage(named: "Evernote")!
     case .some("Facebook"): return UIImage(named: "Facebook")!
-    case .some("FastMail"): return UIImage(named: "FastMail")!
+    case .some("Fastmail"): return UIImage(named: "FastMail")!
     case .some("Firefox"): return UIImage(named: "Firefox")!
     case .some("GitHub"): return UIImage(named: "GitHub")!
     case .some("gitlab.com"): return UIImage(named: "GitLab")!
@@ -67,6 +67,7 @@ private func imageForAccount(_ account: Account) -> UIImage {
     case .some("STACK"): return UIImage(named: "STACK")!
     case .some("Stripe"): return UIImage(named: "Stripe")!
     case .some("Tumblr"): return UIImage(named: "Tumblr")!
+    case .some("Tutanota"): return UIImage(named: "Tutanota")!
     case .some("Ubisoft"): return UIImage(named: "Ubisoft")!
     case .some("WordPress"): return UIImage(named: "WordPress")!
     default:
