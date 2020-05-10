@@ -72,7 +72,14 @@ AVCaptureMetadataOutputObjectsDelegate {
         guard metadataObjects.count > 0,
             let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject, metadataObject.type == AVMetadataObject.ObjectType.qr,
             let url = URL(string: metadataObject.stringValue!),
-            let account = Account(url: url) else { return }
+            let account = Account(url: url) else {
+                presentingViewController?.dismiss(animated: true) {
+                    OperationQueue.main.addOperation {
+                        self.delegate?.rejectAccount()
+                    }
+                }
+                return
+            }
         output.setMetadataObjectsDelegate(nil, queue: nil)
         delegate?.createAccount(account)
         presentingViewController?.dismiss(animated: true, completion: nil)

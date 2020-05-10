@@ -47,7 +47,8 @@ class Account {
             default: break
             }
         }
-        if password.secret.count == 0 { return nil }
+        
+        if password.secret.count == 0 || ![6, 8].contains(password.digits) { return nil }
     }
 
     var description: String {

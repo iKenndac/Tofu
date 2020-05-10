@@ -160,7 +160,7 @@ class AccountsViewController: UITableViewController, UIImagePickerControllerDele
             let qrCodeURL = URL(string: messageString),
             let account = Account(url: qrCodeURL) else {
                 let noQRAlert = UIAlertController(title: "Error",
-                                                  message: "Failed to detect QR code in the provided image.",
+                                                  message: "Failed to detect valid QR code in the provided image.",
                                                   preferredStyle: .alert)
                 noQRAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(noQRAlert, animated: true, completion: nil)
@@ -322,6 +322,15 @@ extension AccountsViewController: AccountCreationDelegate {
         let indexPaths = [IndexPath(row: lastRow, section: 0)]
         tableView.insertRows(at: indexPaths, with: .automatic)
         updateEditing()
+    }
+    
+    func rejectAccount() {
+        let alert = UIAlertController(
+            title: "Unable to Add Account",
+            message: "The account information was not of the expected format.",
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }
 
