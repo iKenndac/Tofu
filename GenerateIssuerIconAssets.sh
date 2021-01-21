@@ -16,10 +16,11 @@ get_name() {
 
 for file in ./IssuerIcons/*.png; do
   name="$(get_name $file)"
-  (mkdir "./Tofu/Assets.xcassets/${name}.imageset" || true) 2>/dev/null
-  cp "$file" "./Tofu/Assets.xcassets/${name}.imageset/${name}@3x.png"
-  sips --resampleWidth 128 "./Tofu/Assets.xcassets/${name}.imageset/${name}@3x.png" --out "./Tofu/Assets.xcassets/${name}.imageset/${name}@2x.png" &>/dev/null
-  sips --resampleWidth 64 "./Tofu/Assets.xcassets/${name}.imageset/${name}@3x.png" --out "./Tofu/Assets.xcassets/${name}.imageset/${name}.png" &>/dev/null
+  imageset="./Tofu/Assets.xcassets/${name}.imageset/"
+  (mkdir "$imageset" || true) 2>/dev/null
+  cp "$file" "${imageset}${name}@3x.png"
+  sips --resampleWidth 128 "${imageset}${name}@3x.png" --out "${imageset}${name}@2x.png" &>/dev/null
+  sips --resampleWidth 64 "${imageset}${name}@3x.png" --out "${imageset}${name}.png" &>/dev/null
   echo -n "{
   \"images\" : [
     {
