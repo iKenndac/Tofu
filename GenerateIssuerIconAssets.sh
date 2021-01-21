@@ -2,6 +2,7 @@
 set -euo pipefail
 
 command -v ag >/dev/null 2>&1 || { echo >&2 "I require The Silver Searcher (ag) but it's not installed. Aborting."; exit 1; }
+command -v sips >/dev/null 2>&1 || { echo >&2 "I require sips but it's not installed. Aborting."; exit 1; }
 
 get_name() {
   # RegEx Explanation:
