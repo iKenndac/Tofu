@@ -41,6 +41,7 @@ write_json() {
 EOF
 }
 
+cd "$(dirname "$0")"
 for file in ./IssuerIcons/*.png; do
   name="$(get_name $file)"
   echo "Generating icon for ${name}"
