@@ -14,29 +14,31 @@ get_name() {
 
 write_json() {
   # JSON copied from Xcode output
-  echo -n "{
-  \"images\" : [
+  cat << EOF > "$2"
+{
+  "images" : [
     {
-      \"idiom\" : \"universal\",
-      \"filename\" : \"${1}.png\",
-      \"scale\" : \"1x\"
+      "idiom" : "universal",
+      "filename" : "${1}.png",
+      "scale" : "1x"
     },
     {
-      \"idiom\" : \"universal\",
-      \"filename\" : \"${1}@2x.png\",
-      \"scale\" : \"2x\"
+      "idiom" : "universal",
+      "filename" : "${1}@2x.png",
+      "scale" : "2x"
     },
     {
-      \"idiom\" : \"universal\",
-      \"filename\" : \"${1}@3x.png\",
-      \"scale\" : \"3x\"
+      "idiom" : "universal",
+      "filename" : "${1}@3x.png",
+      "scale" : "3x"
     }
   ],
-  \"info\" : {
-    \"version\" : 1,
-    \"author\" : \"xcode\"
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
   }
-}" > "${2}"
+}
+EOF
 }
 
 for file in ./IssuerIcons/*.png; do
