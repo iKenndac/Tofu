@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-command -v ag >/dev/null 2>&1 || { echo >&2 "I require The Silver Searcher (ag) but it's not installed. Aborting."; exit 1; }
-command -v sips >/dev/null 2>&1 || { echo >&2 "I require sips but it's not installed. Aborting."; exit 1; }
-
 get_name() {
   # RegEx Explanation:
   #   Positive Lookbehind -- (?<=\.\/IssuerIcons\/)
@@ -12,7 +9,7 @@ get_name() {
   #     Matches all characters, excluding newlines, of any length
   #   Positive Lookforward -- (?=\.png)
   #     Asserts that the selected portion must be followed by .png
-  echo $1 | ag --only-matching '(?<=\.\/IssuerIcons\/).*(?=\.png)'
+  echo $1 | sed -E 's:.+/(.+)\.png:\1:'
 }
 
 write_json() {
