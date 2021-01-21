@@ -14,28 +14,23 @@ get_name() {
   echo $1 | ag --only-matching '(?<=\.\/IssuerIcons\/).*(?=\.png)'
 }
 
-for file in ./IssuerIcons/*.png; do
-  name="$(get_name $file)"
-  imageset="./Tofu/Assets.xcassets/${name}.imageset/"
-  (mkdir "$imageset" || true) 2>/dev/null
-  cp "$file" "${imageset}${name}@3x.png"
-  sips --resampleWidth 128 "${imageset}${name}@3x.png" --out "${imageset}${name}@2x.png" &>/dev/null
-  sips --resampleWidth 64 "${imageset}${name}@3x.png" --out "${imageset}${name}.png" &>/dev/null
+write_json() {
+  # JSON copied from Xcode output
   echo -n "{
   \"images\" : [
     {
       \"idiom\" : \"universal\",
-      \"filename\" : \"${name}.png\",
+      \"filename\" : \"${1}.png\",
       \"scale\" : \"1x\"
     },
     {
       \"idiom\" : \"universal\",
-      \"filename\" : \"${name}@2x.png\",
+      \"filename\" : \"${1}@2x.png\",
       \"scale\" : \"2x\"
     },
     {
       \"idiom\" : \"universal\",
-      \"filename\" : \"${name}@3x.png\",
+      \"filename\" : \"${1}@3x.png\",
       \"scale\" : \"3x\"
     }
   ],
@@ -43,6 +38,17 @@ for file in ./IssuerIcons/*.png; do
     \"version\" : 1,
     \"author\" : \"xcode\"
   }
-}" > "./Tofu/Assets.xcassets/${name}.imageset/Contents.json"
+}" > "${2}"
+}
+
+for file in ./IssuerIcons/*.png; do
+  name="$(get_name $file)"
+  echo "Generating icon for ${name}"
+  imageset="./Tofu/Assets.xcassets/${name}.imageset/"
+  (mkdir "$imageset" || true) 2>/dev/null
+  cp "$file" "${imageset}${name}@3x.png"
+  sips --resampleWidth 128 "${imageset}${name}@3x.png" --out "${imageset}${name}@2x.png" &>/dev/null
+  sips --resampleWidth 64 "${imageset}${name}@3x.png" --out "${imageset}${name}.png" &>/dev/null
+  write_json "$name" "${imageset}Contents.json"
 done
 
