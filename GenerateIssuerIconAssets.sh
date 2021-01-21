@@ -46,7 +46,7 @@ for file in ./IssuerIcons/*.png; do
   name="$(get_name $file)"
   echo "Generating icon for ${name}"
   imageset="./Tofu/Assets.xcassets/${name}.imageset/"
-  (mkdir "$imageset" || true) 2>/dev/null
+  mkdir -p "$imageset"
   sips --resampleWidth 192 "$file" --out "${imageset}${name}@3x.png" &>/dev/null
   sips --resampleWidth 128 "$file" --out "${imageset}${name}@2x.png" &>/dev/null
   sips --resampleWidth 64 "$file" --out "${imageset}${name}.png" &>/dev/null
