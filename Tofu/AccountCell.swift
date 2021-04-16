@@ -47,6 +47,7 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "Gitea": "Gitea",
     "GitHub": "GitHub",
     "gitlab.com": "GitLab",
+    "GoDaddy": "GoDaddy",
     "Google": "Google",
     "GreenAddress": "GreenAddress",
     "Hack The Box": "HackTheBox",
