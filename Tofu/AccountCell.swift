@@ -19,6 +19,7 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "Amazon Web Services": "AWS",
     "Amazon": "Amazon",
     "AnonAddy": "AnonAddy",
+    "Aruba Instant On": "Aruba",
     "Atlassian": "Atlassian",
     "AWS": "AWS",
     "Backblaze": "Backblaze",
