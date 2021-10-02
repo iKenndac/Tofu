@@ -116,6 +116,7 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "Standard Notes": "StandardNotes",
     "Stripe": "Stripe",
     "Surfshark": "Surfshark",
+    "Synology DSM", "SynologyDSM",
     "TETR.IO": "TETR.IO",
     "Time4VPS": "Time4VPS",
     "TorGuard": "TorGuard",
