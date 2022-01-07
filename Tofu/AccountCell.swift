@@ -23,7 +23,7 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "AWS": "AWS",
     "Backblaze": "Backblaze",
     "Basecamp's+Launchpad": "Basecamp",
-    "Binance.com": "Binance",
+    "Binance": "Binance",
     "BitBayAuth": "BitBay",
     "Bitbucket": "Bitbucket",
     "Bitstamp": "Bitstamp",
