@@ -137,6 +137,7 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "WordPress": "WordPress",
     "WordPress.com": "WordPress",
     "YNAB": "YNAB",
+    "Zapier": "Zapier",
     "Zoom": "Zoom",
 ]
 
