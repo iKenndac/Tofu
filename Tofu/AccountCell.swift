@@ -37,6 +37,7 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "CyDIS": "CyDIS",
     "DigitalOcean": "DigitalOcean",
     "Discord": "Discord",
+    "Divvy": "Divvy",
     "DNSimple": "DNSimple",
     "Dropbox": "Dropbox",
     "Electronic Arts": "ElectronicArts",
