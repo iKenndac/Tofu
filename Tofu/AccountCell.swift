@@ -82,6 +82,7 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "Mailchimp": "Mailchimp",
     "Mega": "Mega",
     "Microsoft": "Microsoft",
+    "Namecheap": "Namecheap",
     "Name.com": "Name.com",
     "Netlify": "Netlify",
     "Nextcloud": "Nextcloud",
