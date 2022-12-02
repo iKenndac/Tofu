@@ -104,6 +104,7 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "Robinhood": "Robinhood",
     "rubygems.org": "RubyGems",
     "RuneScape": "RuneScape",
+    "Sharefox": "Sharefox",
     "SimpleLogin": "SimpleLogin",
     "Slack": "Slack",
     "Snapchat": "Snapchat",
