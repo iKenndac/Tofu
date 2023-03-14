@@ -116,6 +116,7 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "TETR.IO": "TETR.IO",
     "Time4VPS": "Time4VPS",
     "TorGuard": "TorGuard",
+    "Trello": "Trello",    
     "Tresorit": "Tresorit",
     "Tumblr": "Tumblr",
     "TurboTax": "TurboTax",
