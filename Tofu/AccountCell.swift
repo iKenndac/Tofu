@@ -75,6 +75,7 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "LinodeManager": "Linode",
     "Lobsters": "Lobsters",
     "LocalBitcoins": "LocalBitcoins",
+    "Login.gov": "Login.gov",
     "Mastodon": "Mastodon",
     "Mailchimp": "Mailchimp",
     "Mega": "Mega",
