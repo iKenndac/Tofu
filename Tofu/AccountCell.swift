@@ -14,6 +14,7 @@ private struct CaseInsensitiveString: Hashable, ExpressibleByStringLiteral {
 
 private let imageNames: [CaseInsensitiveString: String] = [
     "17th Shard": "17thShard",
+    "addy.io": "Addy_io",
     "Adobe ID": "Adobe",
     "Allegro": "Allegro",
     "Amazon Web Services": "AWS",
