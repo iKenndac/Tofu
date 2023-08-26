@@ -80,6 +80,7 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "Mega": "Mega",
     "Microsoft": "Microsoft",
     "Name.com": "Name.com",
+    "NearlyFreeSpeech","NearlyFreeSpeech",
     "Netlify": "Netlify",
     "Nextcloud": "Nextcloud",
     "Nexus Mods": "NexusMods",
