@@ -54,6 +54,7 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "Google": "Google",
     "GreenAddress": "GreenAddress",
     "Hack The Box": "HackTheBox",
+    "HashiCorp Vault","Vault",
     "Heroku": "Heroku",
     "Hetzner": "Hetzner",
     "HEY": "HEY",
