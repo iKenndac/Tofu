@@ -75,10 +75,11 @@ private let imageNames: [CaseInsensitiveString: String] = [
     "LinodeManager": "Linode",
     "Lobsters": "Lobsters",
     "LocalBitcoins": "LocalBitcoins",
-    "Mastodon": "Mastodon",
     "Mailchimp": "Mailchimp",
+    "Mastodon": "Mastodon",
     "Mega": "Mega",
     "Microsoft": "Microsoft",
+    "Mint Mobile", "Mint Mobile"
     "Name.com": "Name.com",
     "Netlify": "Netlify",
     "Nextcloud": "Nextcloud",
