@@ -34,7 +34,6 @@ write_json() {
 EOF
 }
 
-
 cd "$(dirname "$0")"
 for file in "$(git ls-files --others --exclude-standard ./IssuerIcons)"; do
   name="$(get_name $file)"
