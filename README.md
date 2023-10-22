@@ -11,6 +11,10 @@ Tofu works with all services that provide two-factor authentication using the
 HOTP and TOTP algorithms. It does not require a network or cellular connection
 and can be used in airplane mode.
 
+## New maintainer
+
+Hey there, [Calle](https://github.com/calleluks) here, the original author of Tofu Authenticator. Over the last few years I haven’t had as much time to work on the app as I had hoped for. While Tofu has been working fine (I still use the app every day), few improvements have been made and no new platform features have been integrated. Luckily, my friend [Daniel Kennett](https://github.com/ikenndac) who is both a long-time user of Tofu and a way more experienced iOS developer than I am, has offered to take over maintenance and ownership of the app going forward. I’m really thankful for being able to place the app in Daniel’s safe hands and look forward to following the future development of it!
+
 ## Installation
 
 Tofu is available for free on the App Store.
@@ -55,11 +59,3 @@ the TestFlight beta: https://testflight.apple.com/join/LLe6CFdo
 To leave the beta, open the TestFlight app, tap on Tofu Authenticator, scroll
 to the bottom and tap on "Stop Testing". Then re-install the release version of
 Tofu from the App Store.
-
-## Sponsors
-
-The ongoing development of Tofu is made possible by the support of our generous sponsors:
-
-[![svandragt](https://avatars.githubusercontent.com/u/594871?s=40&amp;v=4) @svandragt](https://github.com/svandragt)
-
-[![Corporate Trust](https://user-images.githubusercontent.com/66666/100761071-c11df400-33f2-11eb-9c81-962e9107f93c.png)](https://www.corporate-trust.de/en/)
