@@ -8,7 +8,7 @@ private struct CaseInsensitiveString: Hashable, ExpressibleByStringLiteral {
     }
 
     init(_ string: String) {
-        self.value = string.lowercased()
+        self.value = string.lowercased().trimmingCharacters(in: CharacterSet.whitespaces)
     }
 }
 
