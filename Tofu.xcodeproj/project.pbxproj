@@ -32,6 +32,14 @@
 		25A81D571C5DFC5C008E51B9 /* ScanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A81D561C5DFC5C008E51B9 /* ScanningViewController.swift */; };
 		25A81D5B1C5F656A008E51B9 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A81D5A1C5F656A008E51B9 /* CircularProgressView.swift */; };
 		25CF8B6C1C57946B00665FFE /* AlgorithmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF8B6B1C57946B00665FFE /* AlgorithmsViewController.swift */; };
+		5031C1302B24E7A6002383F9 /* MigrationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031C12F2B24E7A6002383F9 /* MigrationFlow.swift */; };
+		5031C1322B24E7E2002383F9 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031C1312B24E7E2002383F9 /* ButtonStyles.swift */; };
+		5031C1342B24EC24002383F9 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031C1332B24EC24002383F9 /* FlowCoordinator.swift */; };
+		5031C13C2B24FF54002383F9 /* LegacyMigrationOut.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5031C13A2B24FF54002383F9 /* LegacyMigrationOut.strings */; };
+		5031C13F2B24FF8C002383F9 /* generate-symbols-tool in Frameworks */ = {isa = PBXBuildFile; productRef = 5031C13E2B24FF8C002383F9 /* generate-symbols-tool */; };
+		5031C1482B250014002383F9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5031C1462B250014002383F9 /* Localizable.strings */; };
+		5031C1622B2507E2002383F9 /* MigrationFlowViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031C1612B2507E2002383F9 /* MigrationFlowViews.swift */; };
+		5031C1682B250906002383F9 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031C1672B250906002383F9 /* SwiftUI.swift */; };
 		50C456A12B2325A0009C83C6 /* ExternalDataInterop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C456A02B2325A0009C83C6 /* ExternalDataInterop.swift */; };
 		EB61B64D25D2BE15000B1735 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB61B64C25D2BE15000B1735 /* UIViewController.swift */; };
 /* End PBXBuildFile section */
@@ -85,6 +93,13 @@
 		25A81D561C5DFC5C008E51B9 /* ScanningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanningViewController.swift; sourceTree = "<group>"; };
 		25A81D5A1C5F656A008E51B9 /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		25CF8B6B1C57946B00665FFE /* AlgorithmsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgorithmsViewController.swift; sourceTree = "<group>"; };
+		5031C12F2B24E7A6002383F9 /* MigrationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationFlow.swift; sourceTree = "<group>"; };
+		5031C1312B24E7E2002383F9 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		5031C1332B24EC24002383F9 /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
+		5031C13B2B24FF54002383F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Tofu/Base.lproj/LegacyMigrationOut.strings; sourceTree = SOURCE_ROOT; };
+		5031C1472B250014002383F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5031C1612B2507E2002383F9 /* MigrationFlowViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationFlowViews.swift; sourceTree = "<group>"; };
+		5031C1672B250906002383F9 /* SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI.swift; sourceTree = "<group>"; };
 		50C456992B232054009C83C6 /* Tofu.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Tofu.xcconfig; path = Tofu/Tofu.xcconfig; sourceTree = "<group>"; };
 		50C456A02B2325A0009C83C6 /* ExternalDataInterop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDataInterop.swift; sourceTree = "<group>"; };
 		EB61B64C25D2BE15000B1735 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5031C13F2B24FF8C002383F9 /* generate-symbols-tool in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,9 +160,11 @@
 				50C4569D2B232507009C83C6 /* Models */,
 				50C4569E2B23251B009C83C6 /* Views */,
 				50C4569F2B23252D009C83C6 /* Controllers */,
+				5031C12E2B24E78F002383F9 /* Tofu 2 Migration */,
 				25A81D0D1C500E9C008E51B9 /* AppDelegate.swift */,
 				25A81D111C500E9C008E51B9 /* Main.storyboard */,
 				25A81D161C500E9C008E51B9 /* LaunchScreen.storyboard */,
+				5031C1462B250014002383F9 /* Localizable.strings */,
 				25A81D141C500E9C008E51B9 /* Assets.xcassets */,
 				25A81D191C500E9C008E51B9 /* Info.plist */,
 			);
@@ -173,11 +191,22 @@
 			path = TofuUITests;
 			sourceTree = "<group>";
 		};
+		5031C12E2B24E78F002383F9 /* Tofu 2 Migration */ = {
+			isa = PBXGroup;
+			children = (
+				5031C12F2B24E7A6002383F9 /* MigrationFlow.swift */,
+				5031C1612B2507E2002383F9 /* MigrationFlowViews.swift */,
+				5031C13A2B24FF54002383F9 /* LegacyMigrationOut.strings */,
+			);
+			path = "Tofu 2 Migration";
+			sourceTree = "<group>";
+		};
 		50C4569B2B2324E2009C83C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				25A81D441C53923D008E51B9 /* Data.swift */,
 				EB61B64C25D2BE15000B1735 /* UIViewController.swift */,
+				5031C1672B250906002383F9 /* SwiftUI.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -209,6 +238,7 @@
 			children = (
 				25A81D501C551F17008E51B9 /* AccountCell.swift */,
 				25A81D5A1C5F656A008E51B9 /* CircularProgressView.swift */,
+				5031C1312B24E7E2002383F9 /* ButtonStyles.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -223,6 +253,7 @@
 				25A81D561C5DFC5C008E51B9 /* ScanningViewController.swift */,
 				251A79861C7A68BC00E2747E /* AccountSearchResultsViewController.swift */,
 				250CB0101C81BF0B00D48AC9 /* AccountsTableViewUpdater.swift */,
+				5031C1332B24EC24002383F9 /* FlowCoordinator.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -242,8 +273,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				5031C1412B24FF93002383F9 /* PBXTargetDependency */,
 			);
 			name = Tofu;
+			packageProductDependencies = (
+				5031C13E2B24FF8C002383F9 /* generate-symbols-tool */,
+			);
 			productName = Tofu;
 			productReference = 25A81D0A1C500E9C008E51B9 /* Tofu.app */;
 			productType = "com.apple.product-type.application";
@@ -321,6 +356,9 @@
 				Base,
 			);
 			mainGroup = 25A81D011C500E9B008E51B9;
+			packageReferences = (
+				5031C13D2B24FF8C002383F9 /* XCRemoteSwiftPackageReference "localized-strings-symbols" */,
+			);
 			productRefGroup = 25A81D0B1C500E9C008E51B9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -337,7 +375,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5031C1482B250014002383F9 /* Localizable.strings in Resources */,
 				25A81D181C500E9C008E51B9 /* LaunchScreen.storyboard in Resources */,
+				5031C13C2B24FF54002383F9 /* LegacyMigrationOut.strings in Resources */,
 				25A81D151C500E9C008E51B9 /* Assets.xcassets in Resources */,
 				25A81D131C500E9C008E51B9 /* Main.storyboard in Resources */,
 			);
@@ -398,11 +438,16 @@
 				259FAC541C765FEB0013B4F7 /* AlgorithmSelectionDelegate.swift in Sources */,
 				25A81D5B1C5F656A008E51B9 /* CircularProgressView.swift in Sources */,
 				2506E6E31C6F83AE00E694D3 /* Password.swift in Sources */,
+				5031C1682B250906002383F9 /* SwiftUI.swift in Sources */,
+				5031C1322B24E7E2002383F9 /* ButtonStyles.swift in Sources */,
 				25A81D571C5DFC5C008E51B9 /* ScanningViewController.swift in Sources */,
 				25CF8B6C1C57946B00665FFE /* AlgorithmsViewController.swift in Sources */,
 				25A81D3C1C502755008E51B9 /* Keychain.swift in Sources */,
+				5031C1342B24EC24002383F9 /* FlowCoordinator.swift in Sources */,
 				250CB0111C81BF0B00D48AC9 /* AccountsTableViewUpdater.swift in Sources */,
+				5031C1302B24E7A6002383F9 /* MigrationFlow.swift in Sources */,
 				259FAC501C765BB00013B4F7 /* AccountCreationDelegate.swift in Sources */,
+				5031C1622B2507E2002383F9 /* MigrationFlowViews.swift in Sources */,
 				25A81D551C5BC31B008E51B9 /* AccountUpdateViewController.swift in Sources */,
 				25A81D3E1C51758C008E51B9 /* AccountCreationViewController.swift in Sources */,
 				25A81D431C5176F0008E51B9 /* Account.swift in Sources */,
@@ -441,6 +486,10 @@
 			target = 25A81D091C500E9C008E51B9 /* Tofu */;
 			targetProxy = 25A81D2A1C500E9C008E51B9 /* PBXContainerItemProxy */;
 		};
+		5031C1412B24FF93002383F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 5031C1402B24FF93002383F9 /* Generate Strings File Symbols */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -458,6 +507,22 @@
 				25A81D171C500E9C008E51B9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5031C13A2B24FF54002383F9 /* LegacyMigrationOut.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5031C13B2B24FF54002383F9 /* Base */,
+			);
+			name = LegacyMigrationOut.strings;
+			sourceTree = "<group>";
+		};
+		5031C1462B250014002383F9 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5031C1472B250014002383F9 /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -731,6 +796,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5031C13D2B24FF8C002383F9 /* XCRemoteSwiftPackageReference "localized-strings-symbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iKenndac/localized-strings-symbols";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5031C13E2B24FF8C002383F9 /* generate-symbols-tool */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5031C13D2B24FF8C002383F9 /* XCRemoteSwiftPackageReference "localized-strings-symbols" */;
+			productName = "generate-symbols-tool";
+		};
+		5031C1402B24FF93002383F9 /* Generate Strings File Symbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5031C13D2B24FF8C002383F9 /* XCRemoteSwiftPackageReference "localized-strings-symbols" */;
+			productName = "plugin:Generate Strings File Symbols";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 25A81D021C500E9B008E51B9 /* Project object */;
 }

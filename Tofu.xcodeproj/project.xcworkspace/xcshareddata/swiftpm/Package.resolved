@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "localized-strings-symbols",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/iKenndac/localized-strings-symbols",
+      "state" : {
+        "revision" : "6a770687c37490ae4e59d0f808946afa999716ef",
+        "version" : "0.0.5"
+      }
+    }
+  ],
+  "version" : 2
+}

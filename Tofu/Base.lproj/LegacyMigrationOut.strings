@@ -1,0 +1,13 @@
+"MigrateLaterButtonTitle" = "Migrate Later";
+"ViewOnGithubButtonTitle" = "Tofu 2 on GitHub";
+"ViewOnAppStoreButtonTitle" = "Download Tofu 2";
+"BeginMigrationButtonTitle" = "Begin Migration";
+
+"LegacyMigrationTitle" = "Migrate to Tofu 2";
+
+"LegacyMigrationWelcomeCommonBody" = "Tofu has migrated to a new maintainer, and to continue receiving updates you must download Tofu 2 from the App Store.\n\n**This version of Tofu will no longer receive updates.**\n\nYou can find more information on Tofu's move on the project's GitHub page.";
+
+"LegacyMigrationWelcomeWithAccountsBody %@" = "Once you have Tofu 2 installed, we can safely and securely migrate your account to the new app.\n\nTo get started, tap **Begin Migration**.";
+"LegacyMigrationWelcomeWithAccountsBody_Plural %@" = "Once you have Tofu 2 installed, we can safely and securely migrate your %@ accounts to the new app.\n\nTo get started, tap **Begin Migration**.";
+
+

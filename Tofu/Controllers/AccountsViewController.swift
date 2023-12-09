@@ -37,6 +37,13 @@ class AccountsViewController: UITableViewController {
             object: nil)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if MigrationController.shouldAutoPresentMigration {
+            MigrationController.presentMigration(of: accounts, in: self, animated: false)
+        }
+    }
+
     @objc func deselectSelectedTableViewRow() {
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
