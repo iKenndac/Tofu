@@ -43,7 +43,14 @@ extension MigrationFlowStep {
             MigrationIntroView(context: .init(accounts: accounts, passcode: nil), completionHandler: $0)
         }
     }
-    
+
+    /// The screen to collect the first passcode.
+    static func collectPasscode(context: MigrationFlowStep.Context) -> MigrationFlowStep {
+        return MigrationFlowStep(id: .collectPasscode, view: {
+            MigrationPasscodeCollectionView(context: context, completionHandler: $0)
+        })
+    }
+
     /// Signal for dismissing the flow.
     static var dismiss: MigrationFlowStep {
         return MigrationFlowStep(id: .dismiss, representsDismissal: true, view: { _ in EmptyView() })
@@ -59,7 +66,12 @@ struct MigrationFlowStep: FlowCoordinatorStep {
     }
 
     static func nextStep(from stepId: Id, performing action: Action, with context: Context) -> MigrationFlowStep {
-        return .dismiss
+        switch (stepId, action) {
+        case (.intro, .cancel): return .dismiss
+        case (.intro, .next): return .collectPasscode(context: context)
+        case (.collectPasscode, _): return .dismiss
+        case (.dismiss, _): return .dismiss
+        }
     }
 
     struct Context: Equatable, Hashable {
@@ -69,6 +81,7 @@ struct MigrationFlowStep: FlowCoordinatorStep {
 
     enum Id: String {
         case intro
+        case collectPasscode
         case dismiss
     }
 

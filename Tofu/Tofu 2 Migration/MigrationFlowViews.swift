@@ -1,6 +1,8 @@
 import Foundation
 import SwiftUI
 
+// MARK: - First Screen: Intro
+
 @available(iOS 16.0, *)
 struct MigrationIntroView: View {
 
@@ -76,6 +78,98 @@ struct MigrationIntroView: View {
 
 }
 
+// MARK: - Second Screen: Collecting Encryption Passcode
+
+@available(iOS 16.0, *)
+struct MigrationPasscodeCollectionView: View {
+    
+    init(context: MigrationFlowStep.Context, completionHandler: @escaping (MigrationFlowStep.Action, MigrationFlowStep.Context) -> Void) {
+        self.context = context
+        self.completionHandler = completionHandler
+        self.passcode = context.passcode ?? ""
+    }
+
+    let context: MigrationFlowStep.Context
+    let completionHandler: (MigrationFlowStep.Action, MigrationFlowStep.Context) -> Void
+
+    @State var passcode: String
+
+    private func commitPasscode(_ passcode: String) {
+        let newContext = MigrationFlowStep.Context(accounts: context.accounts, passcode: passcode)
+        completionHandler(.next, newContext)
+    }
+
+    var body: some View {
+        PasscodeView(digitCount: 6, passcode: $passcode)
+            .onChange(of: passcode) {
+                if $0.count == 6 { commitPasscode($0) }
+            }
+    }
+}
+
+// MARK: - Utility/Common
+
+@available(iOS 16.0, *)
+struct PasscodeView: View {
+
+    init(digitCount: Int, passcode: Binding<String>) {
+        self.digitCount = digitCount
+        self.passcode = passcode
+        self.internalPasscode = passcode.wrappedValue
+    }
+
+    let digitCount: Int
+    let passcode: Binding<String>
+
+    // This internalPasscode state will get everything entered into the text field, so having it separate
+    // allows us to only expose filtered input back out to our external binding.
+    @State private var internalPasscode: String
+    @FocusState private var focused: Bool
+
+    var body: some View {
+        ZStack {
+            // PIN Dots
+            HStack {
+                Spacer()
+                ForEach(0..<digitCount, id: \.self) { index in
+                    Text(verbatim: dotSymbol(at: index))
+                        .font(.system(size: 80.0, weight: .regular, design: .rounded))
+                        .frame(width: 36.0)
+                    Spacer()
+                }
+            }
+
+            // Hidden field to receive text
+            TextField("", text: $internalPasscode)
+                .multilineTextAlignment(.center)
+                .accentColor(.clear)
+                .foregroundColor(.clear)
+                .keyboardType(.numberPad)
+                .focused($focused)
+                .opacity(0.05)
+                .frame(height: 50.0)
+                .onAppear { focused = true }
+                .onChange(of: internalPasscode) { newValue in
+                    validatePasscode(newValue)
+                }
+        }
+    }
+
+    private func dotSymbol(at index: Int) -> String {
+        return index < passcode.wrappedValue.count ? "•" : "-"
+    }
+
+    // Even though we use the .numberPad keyboard, there are a number of ways to get non-digits into the text field.
+    private let validDigits: String = "0123456789"
+
+    private func validatePasscode(_ incomingPasscode: String) {
+        var filteredPasscode = incomingPasscode.filter({ validDigits.contains($0) })
+        if filteredPasscode.count > digitCount { filteredPasscode = String(filteredPasscode.prefix(digitCount)) }
+        passcode.wrappedValue = filteredPasscode
+        internalPasscode = filteredPasscode
+    }
+}
+
 @available(iOS 16.0, *)
 struct BottomSafeAreaButtons<PrimaryButton: View, SecondaryButton: View>: View {
 
@@ -118,5 +212,14 @@ struct BottomSafeAreaButtons<PrimaryButton: View, SecondaryButton: View>: View {
                 .background(Color.systemBackground) // This is needed to extend into the safe area
         }
         .padding(.horizontal, 20.0)
+    }
+}
+
+// MARK: - Previews
+
+@available(iOS 16.0, *)
+struct FlowPreviews: PreviewProvider {
+    static var previews: some View {
+        MigrationPasscodeCollectionView(context: .init(accounts: [], passcode: nil), completionHandler: { _, _ in })
     }
 }
