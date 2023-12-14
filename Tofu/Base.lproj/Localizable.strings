@@ -1,2 +1,37 @@
+"OKButtonTitle" = "OK";
 "LaterButtonTitle" = "Later";
 "ContinueButtonTitle %@" = "Continue %@";
+"DontShowAgainButtonTitle" = "Don't Show Again";
+
+// Migration from Tofu 1 -> Tofu 2
+
+"ManualMigrationButtonTitle" = "Migrate to Tofu 2…";
+"MigrateLaterButtonTitle" = "Migrate Later";
+"ViewOnGithubButtonTitle" = "Tofu 2 on GitHub";
+"ViewOnAppStoreButtonTitle" = "Download Tofu 2";
+"BeginMigrationButtonTitle" = "Begin Migration";
+"MigrateAccountsButtonTitle %@" = "Migrate Accounts  %@";
+
+"LegacyMigrationTitle" = "Migrate to Tofu 2";
+
+"LegacyMigrationWelcomeCommonBody" = "Tofu has migrated to a new maintainer, and to continue receiving updates you must download the new Tofu 2 app from the App Store.\n\n**This version of Tofu will no longer receive updates.**\n\nYou can find more information on Tofu's move on the project's GitHub page.";
+
+"LegacyMigrationWelcomeWithAccountsBody %@" = "Once you have Tofu 2 installed, we can safely and securely migrate your account to the new app.";
+"LegacyMigrationWelcomeWithAccountsBody_Plural %@" = "Once you have Tofu 2 installed, we can safely and securely migrate your %@ accounts to the new app.";
+"LegacyMigrationWelcomeTofu2NotInstalledBody" = "**Tofu 2 is not installed. Please install it from the App Store to begin migration.**";
+"LegacyMigrationWelcomeGetStartedBody" = "To get started, tap **Begin Migration**.";
+
+"LegacyMigrationEnterPasscodeTitle" = "Enter Passcode";
+"LegacyMigrationConfirmPasscodeTitle" = "Confirm Passcode";
+"LegacyMigrationEnterPasscodeBody" = "This passcode will be used to encrypt your account information for safe transit to Tofu 2. You'll need to enter it again in Tofu 2 to import your accounts.";
+"LegacyMigrationPasscodesDifferentBody" = "Passcodes didn't match. Please try again.";
+
+"LegacyMigrationReadyToMigrateTitle" = "Ready to Migrate";
+"LegacyMigrationReadyToMigrateBody %@" = "You're now ready to migrate %@ account to Tofu 2!\n\nYou'll need to enter your passcode again on the import side. Once you've confirmed that your accounts are safely in Tofu 2, you can delete this app.";
+"LegacyMigrationReadyToMigrateBody_Plural %@" = "You're now ready to migrate %@ accounts to Tofu 2!\n\nYou'll need to enter your passcode again on the import side. Once you've confirmed that your accounts are safely in Tofu 2, you can delete this app.";
+
+"LegacyMigrationEncryptionFailedTitle" = "Failed to Encrypt Data";
+"LegacyMigrationEncryptionFailedMessage" = "Received an error when encrypting your accounts.";
+
+"LegacyMigrationUrlHandingFailedTitle" = "Failed to Migrate Accounts";
+"LegacyMigrationUrlHandingFailedMessage" = "The system indicated the the migration request was not handled successfully.\n\nMake sure you have Tofu 2 installed. If you installed it recently, you may need to relaunch both it and this app to get everything registered correctly.";

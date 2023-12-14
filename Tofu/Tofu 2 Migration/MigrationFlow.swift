@@ -1,28 +1,62 @@
 import Foundation
 import SwiftUI
+import Combine
 
 class MigrationController {
+
+    static let hasMigratedUserDefaultsKey: String = "LegacyMigrationCompleted"
+    static let migrationDeferredCountUserDefaultsKey: String = "LegacyMigrationDeferredCount"
+    static let autoMigrationSilencedUserDefaultsKey: String = "LegacyMigrationSilenced"
 
     static var supportsMigration: Bool {
         if #available(iOS 16.0, *) { return true }
         return false
     }
 
+    private (set) static var hasPresentedMigrationThisSession: Bool = false
+
     static var shouldAutoPresentMigration: Bool {
-        // TODO: Check "don't show again" flag
-        // TODO: Only return `true` once per session.
-        return supportsMigration
+        let defaults = UserDefaults.standard
+        return supportsMigration && !hasPresentedMigrationThisSession &&
+            !defaults.bool(forKey: autoMigrationSilencedUserDefaultsKey) &&
+            !defaults.bool(forKey: hasMigratedUserDefaultsKey)
     }
 
-    static func presentMigration(of accounts: [Account], in parentViewController: UIViewController, animated: Bool) {
+    static var tofu2Installed: Bool {
+        return UIApplication.shared.canOpenURL(URL(string: "tofu2-migrate:")!)
+    }
+
+    private static var cancellables: Set<AnyCancellable> = []
+
+    static func presentMigration(of accounts: [Account], in parentViewController: UIViewController, animated: Bool,
+                                 isAutomaticPresentation: Bool) {
         guard #available(iOS 16.0, *) else { return }
 
         // The SwiftUI view needs a completion handler at init time, but we don't have the UIKit view controller at that
         // point. This is a reference point for the completion handler to capture so the SwiftUI view can dismiss it.
         weak var presentedMigrationFlowController: UIViewController? = nil
+        let deferCount = UserDefaults.standard.integer(forKey: migrationDeferredCountUserDefaultsKey)
 
-        let flowCoordinator = FlowCoordinator<MigrationFlowStep>(initialStep: .intro(with: accounts)) { id, action, context in
-            // TODO: On cancel, increment counter and show "Don't Show Again" button after x dismisses.
+        let startStep = MigrationFlowStep.intro(with: accounts, previousDeferCount: deferCount,
+                                                isAutomaticPresentation: isAutomaticPresentation)
+
+        let flowCoordinator = FlowCoordinator<MigrationFlowStep>(initialStep: startStep) { id, action, context in
+            let defaults = UserDefaults.standard
+                switch action {
+                case .confirm: 
+                    defaults.set(true, forKey: hasMigratedUserDefaultsKey)
+                case .cancel:
+                    if isAutomaticPresentation {
+                        defaults.setValue(deferCount + 1, forKey: migrationDeferredCountUserDefaultsKey)
+                    }
+                }
+
+            cancellables.removeAll()
+            NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification).sink { _ in
+                hasPresentedMigrationThisSession = false
+                cancellables.removeAll()
+            }.store(in: &cancellables)
+            hasPresentedMigrationThisSession = true
             presentedMigrationFlowController?.dismiss(animated: true)
         }
 
@@ -37,9 +71,11 @@ class MigrationController {
 extension MigrationFlowStep {
 
     /// The intro screen, explaining what happened and the need to download the new app.
-    static func intro(with accounts: [Account]) -> MigrationFlowStep {
+    static func intro(with accounts: [Account], previousDeferCount: Int, isAutomaticPresentation: Bool) -> MigrationFlowStep {
         return MigrationFlowStep(id: .intro) {
-            MigrationIntroView(context: .init(accounts: accounts, passcodeDigitCount: 6, passcode: nil), completionHandler: $0)
+            MigrationIntroView(context: .init(isAutomaticPresentation: isAutomaticPresentation,
+                                              previousDeferCount: previousDeferCount, accounts: accounts,
+                                              passcodeDigitCount: 6, passcode: nil), completionHandler: $0)
         }
     }
 
@@ -90,9 +126,16 @@ struct MigrationFlowStep: FlowCoordinatorStep {
     }
 
     struct Context: Equatable, Hashable {
+        let isAutomaticPresentation: Bool
+        let previousDeferCount: Int
         let accounts: [Account]
         let passcodeDigitCount: Int
         let passcode: String?
+
+        func withPasscode(_ passcode: String) -> Self {
+            return Self(isAutomaticPresentation: isAutomaticPresentation, previousDeferCount: previousDeferCount,
+                        accounts: accounts, passcodeDigitCount: passcodeDigitCount, passcode: passcode)
+        }
     }
 
     enum Id: String {

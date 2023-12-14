@@ -6,11 +6,22 @@ import SwiftUI
 @available(iOS 16.0, *)
 struct MigrationIntroView: View {
 
+    init(context: MigrationFlowStep.Context, completionHandler: @escaping (MigrationFlowStep.Action, MigrationFlowStep.Context) -> Void) {
+        self.context = context
+        self.completionHandler = completionHandler
+        self.tofu2Installed = MigrationController.tofu2Installed
+    }
+
     let context: MigrationFlowStep.Context
     let completionHandler: (MigrationFlowStep.Action, MigrationFlowStep.Context) -> Void
 
     private func cancelMigration() {
         completionHandler(.cancel, context)
+    }
+
+    private func cancelMigrationForever() {
+        UserDefaults.standard.setValue(true, forKey: MigrationController.autoMigrationSilencedUserDefaultsKey)
+        cancelMigration()
     }
 
     private func startMigration() {
@@ -25,27 +36,41 @@ struct MigrationIntroView: View {
         UIApplication.shared.open(URL(string: "https://github.com/iKenndac/Tofu")!)
     }
 
+    private func updateTofu2Installed() {
+        tofu2Installed = MigrationController.tofu2Installed
+    }
+
+    @State private var tofu2Installed: Bool
+
     var body: some View {
         ScrollView(.vertical) {
             VStack(alignment: .center) {
                 VStack(alignment: .center, spacing: 20.0) {
-                    Text(.legacyMigrationTitle, tableName: LegacyMigrationOut.tableName)
+                    Text(.legacyMigrationTitle)
                             .font(.system(size: 38.0, weight: .bold))
                             .lineLimit(2)
                             .minimumScaleFactor(0.5)
 
-                    Text(.legacyMigrationWelcomeCommonBody, tableName: LegacyMigrationOut.tableName)
+                    Text(.legacyMigrationWelcomeCommonBody)
                         .font(.system(size: 15.0))
                         .multilineTextAlignment(.center)
 
                     if !context.accounts.isEmpty {
                         Text(.legacyMigrationWelcomeWithAccountsBody(pluralizationCount: context.accounts.count,
-                                                                     formatValue: "\(context.accounts.count)"),
-                             tableName: LegacyMigrationOut.tableName)
+                                                                     formatValue: "\(context.accounts.count)"))
                             .font(.system(size: 15.0))
                             .multilineTextAlignment(.center)
                     }
 
+                    if !tofu2Installed {
+                        Text(.legacyMigrationWelcomeTofu2NotInstalledBody)
+                            .font(.system(size: 15.0))
+                            .multilineTextAlignment(.center)
+                    } else {
+                        Text(.legacyMigrationWelcomeGetStartedBody)
+                            .font(.system(size: 15.0))
+                            .multilineTextAlignment(.center)
+                    }
                 }
                 .padding(.horizontal, 20.0)
                 .padding(.top, 60.0)
@@ -57,23 +82,31 @@ struct MigrationIntroView: View {
         .safeAreaInset(edge: .bottom) {
             if context.accounts.isEmpty {
                 BottomSafeAreaButtons(primaryButton: Button(action: openInAppStore, label: {
-                    Text(.viewOnAppStoreButtonTitle, tableName: LegacyMigrationOut.tableName)
+                    Text(.viewOnAppStoreButtonTitle)
                 }), secondaryButtons: [Button(action: openGitHubPage, label: {
-                    Text(.viewOnGithubButtonTitle, tableName: LegacyMigrationOut.tableName)
+                    Text(.viewOnGithubButtonTitle)
                 })])
             } else {
+                let finalButton: Button<Text> = {
+                    if context.isAutomaticPresentation, context.previousDeferCount >= 5 {
+                        return Button(action: cancelMigrationForever, label: { Text(.dontShowAgainButtonTitle) })
+                    } else {
+                        return Button(action: openGitHubPage, label: { Text(.viewOnGithubButtonTitle) })
+                    }
+                }()
+
                 BottomSafeAreaButtons(primaryButton: Button(action: startMigration, label: {
-                    Text(.beginMigrationButtonTitle, tableName: LegacyMigrationOut.tableName)
-                }),
-                                      secondaryButtons: [Button(action: cancelMigration, label: {
-                    Text(.migrateLaterButtonTitle, tableName: LegacyMigrationOut.tableName)
-                }), Button(action: openGitHubPage, label: {
-                    Text(.viewOnGithubButtonTitle, tableName: LegacyMigrationOut.tableName)
-                })]
+                    Text(.beginMigrationButtonTitle)
+                }).disabled(!tofu2Installed), secondaryButtons: [Button(action: cancelMigration, label: {
+                    Text(.migrateLaterButtonTitle)
+                }), finalButton]
                 )
             }
         }
         .background(Color.systemBackground)
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            updateTofu2Installed()
+        }
     }
 }
 
@@ -89,22 +122,19 @@ struct MigrationPasscodeCollectionView: View {
 
     private func commitPasscode(_ passcode: String) {
         guard passcode.count == context.passcodeDigitCount else { return }
-        let newContext = MigrationFlowStep.Context(accounts: context.accounts,
-                                                   passcodeDigitCount: context.passcodeDigitCount,
-                                                   passcode: passcode)
-        completionHandler(.confirm, newContext)
+        completionHandler(.confirm, context.withPasscode(passcode))
     }
 
     var body: some View {
         ScrollView(.vertical) {
             VStack(alignment: .center) {
                 VStack(alignment: .center, spacing: 20.0) {
-                    Text(.legacyMigrationEnterPasscodeTitle, tableName: LegacyMigrationOut.tableName)
+                    Text(.legacyMigrationEnterPasscodeTitle)
                             .font(.system(size: 38.0, weight: .bold))
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
 
-                    Text(.legacyMigrationEnterPasscodeBody, tableName: LegacyMigrationOut.tableName)
+                    Text(.legacyMigrationEnterPasscodeBody)
                         .font(.system(size: 15.0))
                         .multilineTextAlignment(.center)
 
@@ -163,12 +193,12 @@ struct MigrationPasscodeConfirmationView: View {
         ScrollView(.vertical) {
             VStack(alignment: .center) {
                 VStack(alignment: .center, spacing: 20.0) {
-                    Text(.legacyMigrationConfirmPasscodeTitle, tableName: LegacyMigrationOut.tableName)
+                    Text(.legacyMigrationConfirmPasscodeTitle)
                             .font(.system(size: 38.0, weight: .bold))
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
 
-                    Text(.legacyMigrationEnterPasscodeBody, tableName: LegacyMigrationOut.tableName)
+                    Text(.legacyMigrationEnterPasscodeBody)
                         .font(.system(size: 15.0))
                         .multilineTextAlignment(.center)
 
@@ -176,7 +206,7 @@ struct MigrationPasscodeConfirmationView: View {
                         .modifier(Shake(animatableData: failedAttempts))
 
                     if failedAttempts > 0 {
-                        Text(.legacyMigrationPasscodesDifferentBody, tableName: LegacyMigrationOut.tableName)
+                        Text(.legacyMigrationPasscodesDifferentBody)
                             .font(.system(size: 15.0))
                             .multilineTextAlignment(.center)
                     }
@@ -203,28 +233,39 @@ struct MigrationExportView: View {
     let completionHandler: (MigrationFlowStep.Action, MigrationFlowStep.Context) -> Void
 
     @State private var didEncounterEncryptionFailure: Bool = false
-    @State private var encryptedAccountData: Data? = nil
+    @State private var didEncounterUrlFailure: Bool = false
+    @State private var migrationUrl: URL? = nil
+
+    private func completeMigration() {
+        completionHandler(.confirm, context)
+    }
 
     private func cancelMigration() {
         completionHandler(.cancel, context)
     }
 
     private func exportData() {
-
+        guard let migrationUrl else { return }
+        UIApplication.shared.open(migrationUrl) { success in
+            if success { 
+                completeMigration()
+            } else {
+                didEncounterUrlFailure = true
+            }
+        }
     }
 
     var body: some View {
         ScrollView(.vertical) {
             VStack(alignment: .center) {
                 VStack(alignment: .center, spacing: 20.0) {
-                    Text(.legacyMigrationReadyToMigrateTitle, tableName: LegacyMigrationOut.tableName)
+                    Text(.legacyMigrationReadyToMigrateTitle)
                         .font(.system(size: 38.0, weight: .bold))
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
 
                     Text(.legacyMigrationReadyToMigrateBody(pluralizationCount: context.accounts.count,
-                                                            formatValue: "\(context.accounts.count)"),
-                         tableName: LegacyMigrationOut.tableName)
+                                                            formatValue: "\(context.accounts.count)"))
                         .font(.system(size: 15.0))
                         .multilineTextAlignment(.center)
                 }
@@ -238,15 +279,20 @@ struct MigrationExportView: View {
         .safeAreaInset(edge: .bottom) {
             BottomSafeAreaButtons(primaryButton: {
                 Button(action: exportData, label: {
-                    Text(.migrateAccountsButtonTitle(imageValue: Image(systemName: "arrow.up.forward.app")),
-                         tableName: LegacyMigrationOut.tableName) })
-                    .disabled(encryptedAccountData == nil)
+                    Text(.migrateAccountsButtonTitle(imageValue: Image(systemName: "arrow.up.forward.app"))) })
+                    .disabled(migrationUrl == nil)
             }(), secondaryButtons: [Button(action: cancelMigration, label: {
-                Text(.migrateLaterButtonTitle, tableName: LegacyMigrationOut.tableName)
+                Text(.migrateLaterButtonTitle)
             })])
         }
         .background(Color.systemBackground)
         .navigationBarBackButtonHidden()
+        .alert(.legacyMigrationEncryptionFailedTitle, isPresented: $didEncounterEncryptionFailure, actions: {
+            Button(role: .cancel, action: {}, label: { Text(.oKButtonTitle) })
+        }, message: { Text(.legacyMigrationEncryptionFailedMessage) })
+        .alert(.legacyMigrationUrlHandingFailedTitle, isPresented: $didEncounterUrlFailure, actions: {
+            Button(role: .cancel, action: {}, label: { Text(.oKButtonTitle) })
+        }, message: { Text(.legacyMigrationUrlHandingFailedMessage) })
         .task {
             let accounts = context.accounts
             guard let passcode = context.passcode else {
@@ -257,7 +303,8 @@ struct MigrationExportView: View {
                 let encrypter = ExternalDataInterop()
                 do {
                     let encryptedAccounts = try encrypter.encryptedData(for: accounts, with: passcode)
-                    DispatchQueue.main.async { self.encryptedAccountData = encryptedAccounts }
+                    let migrationUrl = try encrypter.migrationUrl(for: encryptedAccounts)
+                    DispatchQueue.main.async { self.migrationUrl = migrationUrl }
                 } catch {
                     DispatchQueue.main.async { self.didEncounterEncryptionFailure = true }
                 }
@@ -386,7 +433,8 @@ struct BottomSafeAreaButtons<PrimaryButton: View, SecondaryButton: View>: View {
 @available(iOS 16.0, *)
 struct FlowPreviews: PreviewProvider {
     static var previews: some View {
-        MigrationPasscodeCollectionView(context: .init(accounts: [], passcodeDigitCount: 6, passcode: nil),
+        MigrationPasscodeCollectionView(context: .init(isAutomaticPresentation: true, previousDeferCount: 0, accounts: [],
+                                                       passcodeDigitCount: 6, passcode: nil),
                                         completionHandler: { _, _ in })
     }
 }

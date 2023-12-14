@@ -30,18 +30,43 @@ class AccountsViewController: UITableViewController {
 
         updateEditing()
 
+        if MigrationController.supportsMigration {
+            toolbarItems = [
+                UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                UIBarButtonItem(title: Localizable.manualMigrationButtonTitle, style: .done, target: self,
+                                action: #selector(presentManualMigration)),
+                UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            ]
+            navigationController?.setToolbarHidden(false, animated: false)
+        }
+
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(deselectSelectedTableViewRow),
             name: UIMenuController.willHideMenuNotification,
             object: nil)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applicationBecameActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    @objc func applicationBecameActive() {
+        automaticallyPresentMigrationIfAppropriate(animated: true)
+    }
+
+    private func automaticallyPresentMigrationIfAppropriate(animated: Bool) {
+        guard presentedViewController == nil else { return }
         if MigrationController.shouldAutoPresentMigration {
-            MigrationController.presentMigration(of: accounts, in: self, animated: false)
+            MigrationController.presentMigration(of: accounts, in: self, animated: animated, isAutomaticPresentation: true)
         }
+    }
+
+    @objc private func presentManualMigration() {
+        guard presentedViewController == nil else { return }
+        MigrationController.presentMigration(of: accounts, in: self, animated: true, isAutomaticPresentation: false)
     }
 
     @objc func deselectSelectedTableViewRow() {

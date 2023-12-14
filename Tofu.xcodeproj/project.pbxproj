@@ -35,7 +35,6 @@
 		5031C1302B24E7A6002383F9 /* MigrationFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031C12F2B24E7A6002383F9 /* MigrationFlow.swift */; };
 		5031C1322B24E7E2002383F9 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031C1312B24E7E2002383F9 /* ButtonStyles.swift */; };
 		5031C1342B24EC24002383F9 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031C1332B24EC24002383F9 /* FlowCoordinator.swift */; };
-		5031C13C2B24FF54002383F9 /* LegacyMigrationOut.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5031C13A2B24FF54002383F9 /* LegacyMigrationOut.strings */; };
 		5031C13F2B24FF8C002383F9 /* generate-symbols-tool in Frameworks */ = {isa = PBXBuildFile; productRef = 5031C13E2B24FF8C002383F9 /* generate-symbols-tool */; };
 		5031C1482B250014002383F9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5031C1462B250014002383F9 /* Localizable.strings */; };
 		5031C1622B2507E2002383F9 /* MigrationFlowViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5031C1612B2507E2002383F9 /* MigrationFlowViews.swift */; };
@@ -96,7 +95,6 @@
 		5031C12F2B24E7A6002383F9 /* MigrationFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationFlow.swift; sourceTree = "<group>"; };
 		5031C1312B24E7E2002383F9 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		5031C1332B24EC24002383F9 /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
-		5031C13B2B24FF54002383F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Tofu/Base.lproj/LegacyMigrationOut.strings; sourceTree = SOURCE_ROOT; };
 		5031C1472B250014002383F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5031C1612B2507E2002383F9 /* MigrationFlowViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationFlowViews.swift; sourceTree = "<group>"; };
 		5031C1672B250906002383F9 /* SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI.swift; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 			children = (
 				5031C12F2B24E7A6002383F9 /* MigrationFlow.swift */,
 				5031C1612B2507E2002383F9 /* MigrationFlowViews.swift */,
-				5031C13A2B24FF54002383F9 /* LegacyMigrationOut.strings */,
 			);
 			path = "Tofu 2 Migration";
 			sourceTree = "<group>";
@@ -377,7 +374,6 @@
 			files = (
 				5031C1482B250014002383F9 /* Localizable.strings in Resources */,
 				25A81D181C500E9C008E51B9 /* LaunchScreen.storyboard in Resources */,
-				5031C13C2B24FF54002383F9 /* LegacyMigrationOut.strings in Resources */,
 				25A81D151C500E9C008E51B9 /* Assets.xcassets in Resources */,
 				25A81D131C500E9C008E51B9 /* Main.storyboard in Resources */,
 			);
@@ -507,14 +503,6 @@
 				25A81D171C500E9C008E51B9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		5031C13A2B24FF54002383F9 /* LegacyMigrationOut.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5031C13B2B24FF54002383F9 /* Base */,
-			);
-			name = LegacyMigrationOut.strings;
 			sourceTree = "<group>";
 		};
 		5031C1462B250014002383F9 /* Localizable.strings */ = {

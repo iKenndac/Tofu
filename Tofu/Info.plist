@@ -30,11 +30,25 @@
 				<string>otpauth</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.calleerlandsson.Tofu.base-scheme</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com-calleerlandsson-tofu</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>TOFU_BUNDLE_VERSION</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>tofu2-migrate</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>

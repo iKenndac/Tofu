@@ -19,6 +19,16 @@ class ExternalDataInterop {
         return try NSKeyedArchiver.archivedData(withRootObject: container, requiringSecureCoding: true)
     }
 
+    /// Generate a migration URL for the given encrypted data.
+    func migrationUrl(for encryptedData: Data) throws -> URL {
+        let base64Data = encryptedData.base64EncodedString()
+        var components = URLComponents()
+        components.scheme = "tofu2-migrate"
+        components.path = "import/" + base64Data
+        guard let url = components.url else { throw ExternalDataInteropError.invalidData }
+        return url
+    }
+
     /// Attempt to decrypt the given accounts with using the given passcode.
     func decryptAccounts(from encryptedAccountData: Data, with passcode: String) throws -> [Account] {
 
