@@ -31,7 +31,6 @@ class MigrationController {
         presentedMigrationFlowController = root
         parentViewController.present(root, animated: animated)
     }
-
 }
 
 @available(iOS 16.0, *)
@@ -40,14 +39,28 @@ extension MigrationFlowStep {
     /// The intro screen, explaining what happened and the need to download the new app.
     static func intro(with accounts: [Account]) -> MigrationFlowStep {
         return MigrationFlowStep(id: .intro) {
-            MigrationIntroView(context: .init(accounts: accounts, passcode: nil), completionHandler: $0)
+            MigrationIntroView(context: .init(accounts: accounts, passcodeDigitCount: 6, passcode: nil), completionHandler: $0)
         }
     }
 
-    /// The screen to collect the first passcode.
+    /// The screen to collect the passcode.
     static func collectPasscode(context: MigrationFlowStep.Context) -> MigrationFlowStep {
         return MigrationFlowStep(id: .collectPasscode, view: {
             MigrationPasscodeCollectionView(context: context, completionHandler: $0)
+        })
+    }
+
+    /// The screen to confirm the passcode.
+    static func confirmPasscode(context: MigrationFlowStep.Context) -> MigrationFlowStep {
+        return MigrationFlowStep(id: .confirmPasscode, view: {
+            MigrationPasscodeConfirmationView(context: context, completionHandler: $0)
+        })
+    }
+
+    /// The screen to export the encrypted data.
+    static func export(context: MigrationFlowStep.Context) -> MigrationFlowStep {
+        return MigrationFlowStep(id: .export, view: {
+            MigrationExportView(context: context, completionHandler: $0)
         })
     }
 
@@ -67,27 +80,32 @@ struct MigrationFlowStep: FlowCoordinatorStep {
 
     static func nextStep(from stepId: Id, performing action: Action, with context: Context) -> MigrationFlowStep {
         switch (stepId, action) {
-        case (.intro, .cancel): return .dismiss
-        case (.intro, .next): return .collectPasscode(context: context)
-        case (.collectPasscode, _): return .dismiss
+        case (.intro, .confirm): return .collectPasscode(context: context)
+        case (.collectPasscode, .confirm): return .confirmPasscode(context: context)
+        case (.confirmPasscode, .confirm): return .export(context: context)
+        case (.export, _): return .dismiss
         case (.dismiss, _): return .dismiss
+        case (_, .cancel): return .dismiss
         }
     }
 
     struct Context: Equatable, Hashable {
         let accounts: [Account]
+        let passcodeDigitCount: Int
         let passcode: String?
     }
 
     enum Id: String {
         case intro
         case collectPasscode
+        case confirmPasscode
+        case export
         case dismiss
     }
 
     enum Action {
         case cancel
-        case next
+        case confirm
     }
 
     init(id: Id, representsDismissal: Bool = false, view: @escaping (@escaping (Action, Context) -> Void) -> some View)  {

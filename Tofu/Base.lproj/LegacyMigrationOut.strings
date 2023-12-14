@@ -2,6 +2,7 @@
 "ViewOnGithubButtonTitle" = "Tofu 2 on GitHub";
 "ViewOnAppStoreButtonTitle" = "Download Tofu 2";
 "BeginMigrationButtonTitle" = "Begin Migration";
+"MigrateAccountsButtonTitle %@" = "Migrate Accounts  %@";
 
 "LegacyMigrationTitle" = "Migrate to Tofu 2";
 
@@ -10,4 +11,11 @@
 "LegacyMigrationWelcomeWithAccountsBody %@" = "Once you have Tofu 2 installed, we can safely and securely migrate your account to the new app.\n\nTo get started, tap **Begin Migration**.";
 "LegacyMigrationWelcomeWithAccountsBody_Plural %@" = "Once you have Tofu 2 installed, we can safely and securely migrate your %@ accounts to the new app.\n\nTo get started, tap **Begin Migration**.";
 
+"LegacyMigrationEnterPasscodeTitle" = "Enter Passcode";
+"LegacyMigrationConfirmPasscodeTitle" = "Confirm Passcode";
+"LegacyMigrationEnterPasscodeBody" = "This passcode will be used to encrypt your account information for safe transit to Tofu 2. You'll need to enter it again in Tofu 2 to import your accounts.";
+"LegacyMigrationPasscodesDifferentBody" = "Passcodes didn't match. Please try again.";
 
+"LegacyMigrationReadyToMigrateTitle" = "Ready to Migrate";
+"LegacyMigrationReadyToMigrateBody %@" = "You're now ready to migrate %@ account to Tofu 2!\n\nYou'll need to enter your passcode again on the import side. Once you've confirmed that your accounts are safely in Tofu 2, you can delete this app.";
+"LegacyMigrationReadyToMigrateBody_Plural %@" = "You're now ready to migrate %@ accounts to Tofu 2!\n\nYou'll need to enter your passcode again on the import side. Once you've confirmed that your accounts are safely in Tofu 2, you can delete this app.";

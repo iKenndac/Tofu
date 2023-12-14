@@ -9,19 +9,19 @@ struct MigrationIntroView: View {
     let context: MigrationFlowStep.Context
     let completionHandler: (MigrationFlowStep.Action, MigrationFlowStep.Context) -> Void
 
-    func cancelMigration() {
+    private func cancelMigration() {
         completionHandler(.cancel, context)
     }
 
-    func startMigration() {
-        completionHandler(.next, context)
+    private func startMigration() {
+        completionHandler(.confirm, context)
     }
 
-    func openInAppStore() {
+    private func openInAppStore() {
 
     }
 
-    func openGitHubPage() {
+    private func openGitHubPage() {
         UIApplication.shared.open(URL(string: "https://github.com/iKenndac/Tofu")!)
     }
 
@@ -30,7 +30,7 @@ struct MigrationIntroView: View {
             VStack(alignment: .center) {
                 VStack(alignment: .center, spacing: 20.0) {
                     Text(.legacyMigrationTitle, tableName: LegacyMigrationOut.tableName)
-                            .font(.system(size: 38.0, weight: .bold, design: .rounded))
+                            .font(.system(size: 38.0, weight: .bold))
                             .lineLimit(2)
                             .minimumScaleFactor(0.5)
 
@@ -75,35 +75,194 @@ struct MigrationIntroView: View {
         }
         .background(Color.systemBackground)
     }
-
 }
 
 // MARK: - Second Screen: Collecting Encryption Passcode
 
 @available(iOS 16.0, *)
 struct MigrationPasscodeCollectionView: View {
-    
-    init(context: MigrationFlowStep.Context, completionHandler: @escaping (MigrationFlowStep.Action, MigrationFlowStep.Context) -> Void) {
-        self.context = context
-        self.completionHandler = completionHandler
-        self.passcode = context.passcode ?? ""
-    }
 
     let context: MigrationFlowStep.Context
     let completionHandler: (MigrationFlowStep.Action, MigrationFlowStep.Context) -> Void
 
-    @State var passcode: String
+    @State private var passcode: String = ""
 
     private func commitPasscode(_ passcode: String) {
-        let newContext = MigrationFlowStep.Context(accounts: context.accounts, passcode: passcode)
-        completionHandler(.next, newContext)
+        guard passcode.count == context.passcodeDigitCount else { return }
+        let newContext = MigrationFlowStep.Context(accounts: context.accounts,
+                                                   passcodeDigitCount: context.passcodeDigitCount,
+                                                   passcode: passcode)
+        completionHandler(.confirm, newContext)
     }
 
     var body: some View {
-        PasscodeView(digitCount: 6, passcode: $passcode)
-            .onChange(of: passcode) {
-                if $0.count == 6 { commitPasscode($0) }
+        ScrollView(.vertical) {
+            VStack(alignment: .center) {
+                VStack(alignment: .center, spacing: 20.0) {
+                    Text(.legacyMigrationEnterPasscodeTitle, tableName: LegacyMigrationOut.tableName)
+                            .font(.system(size: 38.0, weight: .bold))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
+
+                    Text(.legacyMigrationEnterPasscodeBody, tableName: LegacyMigrationOut.tableName)
+                        .font(.system(size: 15.0))
+                        .multilineTextAlignment(.center)
+
+                    PasscodeView(digitCount: context.passcodeDigitCount, passcode: $passcode)
+                }
+                .padding(.horizontal, 20.0)
+                .padding(.top, 60.0)
+                .padding(.bottom, 20.0)
+                .frame(maxWidth: 450.0)
             }
+            .frame(maxWidth: .infinity)
+        }
+        .background(Color.systemBackground)
+        .onChange(of: passcode) { commitPasscode($0) }
+        .onDisappear { passcode = "" }
+    }
+}
+
+// MARK: - Third Screen: Confirming Encryption Passcode
+
+@available(iOS 16.0, *)
+struct MigrationPasscodeConfirmationView: View {
+
+    let context: MigrationFlowStep.Context
+    let completionHandler: (MigrationFlowStep.Action, MigrationFlowStep.Context) -> Void
+
+    @State private var passcode: String = ""
+    @State private var failedAttempts: Int = 0
+
+    private struct Shake: GeometryEffect {
+        var amount: CGFloat = 10.0
+        var shakesPerUnit: CGFloat = 3.0
+        var animatableData: Int
+
+        func effectValue(size: CGSize) -> ProjectionTransform {
+            ProjectionTransform(CGAffineTransform(translationX:
+                amount * sin(CGFloat(animatableData) * .pi * shakesPerUnit),
+                y: 0))
+        }
+    }
+
+    private func commitPasscode(_ passcode: String) {
+        guard passcode.count == context.passcodeDigitCount else { return }
+        guard passcode == context.passcode else {
+            let impactHeavy = UIImpactFeedbackGenerator(style: .heavy)
+            impactHeavy.impactOccurred()
+            withAnimation(.default) { failedAttempts += 1 }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.33, execute: { self.passcode = "" })
+            return
+        }
+
+        completionHandler(.confirm, context)
+    }
+
+    var body: some View {
+        ScrollView(.vertical) {
+            VStack(alignment: .center) {
+                VStack(alignment: .center, spacing: 20.0) {
+                    Text(.legacyMigrationConfirmPasscodeTitle, tableName: LegacyMigrationOut.tableName)
+                            .font(.system(size: 38.0, weight: .bold))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
+
+                    Text(.legacyMigrationEnterPasscodeBody, tableName: LegacyMigrationOut.tableName)
+                        .font(.system(size: 15.0))
+                        .multilineTextAlignment(.center)
+
+                    PasscodeView(digitCount: context.passcodeDigitCount, passcode: $passcode)
+                        .modifier(Shake(animatableData: failedAttempts))
+
+                    if failedAttempts > 0 {
+                        Text(.legacyMigrationPasscodesDifferentBody, tableName: LegacyMigrationOut.tableName)
+                            .font(.system(size: 15.0))
+                            .multilineTextAlignment(.center)
+                    }
+                }
+                .padding(.horizontal, 20.0)
+                .padding(.top, 60.0)
+                .padding(.bottom, 20.0)
+                .frame(maxWidth: 450.0)
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .background(Color.systemBackground)
+        .onChange(of: passcode) { commitPasscode($0) }
+        .onDisappear { passcode = "" }
+    }
+}
+
+// MARK: - Fourth Screen: Exporting
+
+@available(iOS 16.0, *)
+struct MigrationExportView: View {
+
+    let context: MigrationFlowStep.Context
+    let completionHandler: (MigrationFlowStep.Action, MigrationFlowStep.Context) -> Void
+
+    @State private var didEncounterEncryptionFailure: Bool = false
+    @State private var encryptedAccountData: Data? = nil
+
+    private func cancelMigration() {
+        completionHandler(.cancel, context)
+    }
+
+    private func exportData() {
+
+    }
+
+    var body: some View {
+        ScrollView(.vertical) {
+            VStack(alignment: .center) {
+                VStack(alignment: .center, spacing: 20.0) {
+                    Text(.legacyMigrationReadyToMigrateTitle, tableName: LegacyMigrationOut.tableName)
+                        .font(.system(size: 38.0, weight: .bold))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+
+                    Text(.legacyMigrationReadyToMigrateBody(pluralizationCount: context.accounts.count,
+                                                            formatValue: "\(context.accounts.count)"),
+                         tableName: LegacyMigrationOut.tableName)
+                        .font(.system(size: 15.0))
+                        .multilineTextAlignment(.center)
+                }
+                .padding(.horizontal, 20.0)
+                .padding(.top, 60.0)
+                .padding(.bottom, 20.0)
+                .frame(maxWidth: 450.0)
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .safeAreaInset(edge: .bottom) {
+            BottomSafeAreaButtons(primaryButton: {
+                Button(action: exportData, label: {
+                    Text(.migrateAccountsButtonTitle(imageValue: Image(systemName: "arrow.up.forward.app")),
+                         tableName: LegacyMigrationOut.tableName) })
+                    .disabled(encryptedAccountData == nil)
+            }(), secondaryButtons: [Button(action: cancelMigration, label: {
+                Text(.migrateLaterButtonTitle, tableName: LegacyMigrationOut.tableName)
+            })])
+        }
+        .background(Color.systemBackground)
+        .navigationBarBackButtonHidden()
+        .task {
+            let accounts = context.accounts
+            guard let passcode = context.passcode else {
+                didEncounterEncryptionFailure = true
+                return
+            }
+            DispatchQueue.global(qos: .userInitiated).async {
+                let encrypter = ExternalDataInterop()
+                do {
+                    let encryptedAccounts = try encrypter.encryptedData(for: accounts, with: passcode)
+                    DispatchQueue.main.async { self.encryptedAccountData = encryptedAccounts }
+                } catch {
+                    DispatchQueue.main.async { self.didEncounterEncryptionFailure = true }
+                }
+            }
+        }
     }
 }
 
@@ -133,7 +292,7 @@ struct PasscodeView: View {
                 Spacer()
                 ForEach(0..<digitCount, id: \.self) { index in
                     Text(verbatim: dotSymbol(at: index))
-                        .font(.system(size: 80.0, weight: .regular, design: .rounded))
+                        .font(.system(size: 80.0, weight: .regular))
                         .frame(width: 36.0)
                     Spacer()
                 }
@@ -149,9 +308,16 @@ struct PasscodeView: View {
                 .opacity(0.05)
                 .frame(height: 50.0)
                 .onAppear { focused = true }
-                .onChange(of: internalPasscode) { newValue in
-                    validatePasscode(newValue)
-                }
+        }
+        .onChange(of: internalPasscode) {
+            // This happens when the textfield's text changes. We filter/validate, and push
+            // values out to to the public binding.
+            validatePasscode($0)
+        }
+        .onChange(of: passcode.wrappedValue) {
+            // This happens when the external binding changes (i.e., maybe the client wants to clear the field).
+            // We need to sync it to the internal binding.
+            internalPasscode = $0
         }
     }
 
@@ -220,6 +386,7 @@ struct BottomSafeAreaButtons<PrimaryButton: View, SecondaryButton: View>: View {
 @available(iOS 16.0, *)
 struct FlowPreviews: PreviewProvider {
     static var previews: some View {
-        MigrationPasscodeCollectionView(context: .init(accounts: [], passcode: nil), completionHandler: { _, _ in })
+        MigrationPasscodeCollectionView(context: .init(accounts: [], passcodeDigitCount: 6, passcode: nil),
+                                        completionHandler: { _, _ in })
     }
 }
