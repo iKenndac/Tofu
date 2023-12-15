@@ -61,7 +61,7 @@
 		259FAC4F1C765BB00013B4F7 /* AccountCreationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCreationDelegate.swift; sourceTree = "<group>"; };
 		259FAC511C765F4B0013B4F7 /* AccountUpdateDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountUpdateDelegate.swift; sourceTree = "<group>"; };
 		259FAC531C765FEB0013B4F7 /* AlgorithmSelectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgorithmSelectionDelegate.swift; sourceTree = "<group>"; };
-		25A81D0A1C500E9C008E51B9 /* Tofu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tofu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		25A81D0A1C500E9C008E51B9 /* Tofu 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tofu 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A81D0D1C500E9C008E51B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25A81D0F1C500E9C008E51B9 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		25A81D121C500E9C008E51B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		25A81D0B1C500E9C008E51B9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				25A81D0A1C500E9C008E51B9 /* Tofu.app */,
+				25A81D0A1C500E9C008E51B9 /* Tofu 2.app */,
 				25A81D1E1C500E9C008E51B9 /* TofuTests.xctest */,
 				25A81D291C500E9C008E51B9 /* TofuUITests.xctest */,
 			);
@@ -230,9 +230,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		25A81D091C500E9C008E51B9 /* Tofu */ = {
+		25A81D091C500E9C008E51B9 /* Tofu 2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 25A81D321C500E9C008E51B9 /* Build configuration list for PBXNativeTarget "Tofu" */;
+			buildConfigurationList = 25A81D321C500E9C008E51B9 /* Build configuration list for PBXNativeTarget "Tofu 2" */;
 			buildPhases = (
 				50C4569A2B2321D0009C83C6 /* Generate Version Headers */,
 				25A81D061C500E9C008E51B9 /* Sources */,
@@ -243,9 +243,9 @@
 			);
 			dependencies = (
 			);
-			name = Tofu;
+			name = "Tofu 2";
 			productName = Tofu;
-			productReference = 25A81D0A1C500E9C008E51B9 /* Tofu.app */;
+			productReference = 25A81D0A1C500E9C008E51B9 /* Tofu 2.app */;
 			productType = "com.apple.product-type.application";
 		};
 		25A81D1D1C500E9C008E51B9 /* TofuTests */ = {
@@ -325,7 +325,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				25A81D091C500E9C008E51B9 /* Tofu */,
+				25A81D091C500E9C008E51B9 /* Tofu 2 */,
 				25A81D1D1C500E9C008E51B9 /* TofuTests */,
 				25A81D281C500E9C008E51B9 /* TofuUITests */,
 			);
@@ -433,12 +433,12 @@
 /* Begin PBXTargetDependency section */
 		25A81D201C500E9C008E51B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 25A81D091C500E9C008E51B9 /* Tofu */;
+			target = 25A81D091C500E9C008E51B9 /* Tofu 2 */;
 			targetProxy = 25A81D1F1C500E9C008E51B9 /* PBXContainerItemProxy */;
 		};
 		25A81D2B1C500E9C008E51B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 25A81D091C500E9C008E51B9 /* Tofu */;
+			target = 25A81D091C500E9C008E51B9 /* Tofu 2 */;
 			targetProxy = 25A81D2A1C500E9C008E51B9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -591,7 +591,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.calleerlandsson.Tofu;
+				PRODUCT_BUNDLE_IDENTIFIER = org.danielkennett.twofu;
+				PRODUCT_MODULE_NAME = Tofu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -616,7 +617,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.calleerlandsson.Tofu;
+				PRODUCT_BUNDLE_IDENTIFIER = org.danielkennett.twofu;
+				PRODUCT_MODULE_NAME = Tofu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -636,7 +638,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.calleerlandsson.TofuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tofu.app/Tofu";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tofu 2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tofu 2";
 			};
 			name = Debug;
 		};
@@ -653,7 +655,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.calleerlandsson.TofuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tofu.app/Tofu";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tofu 2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tofu 2";
 			};
 			name = Release;
 		};
@@ -703,7 +705,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		25A81D321C500E9C008E51B9 /* Build configuration list for PBXNativeTarget "Tofu" */ = {
+		25A81D321C500E9C008E51B9 /* Build configuration list for PBXNativeTarget "Tofu 2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				25A81D331C500E9C008E51B9 /* Debug */,
