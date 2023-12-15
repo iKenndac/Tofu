@@ -233,9 +233,9 @@ struct MigrationExportView: View {
     let completionHandler: (MigrationFlowStep.Action, MigrationFlowStep.Context) -> Void
 
     @State private var didEncounterEncryptionFailure: Bool = false
-    @State private var didEncounterUrlFailure: Bool = false
     @State private var migrationData: Data? = nil
-    @State private var exportingDocument: ExportableAccounts? = nil
+    @State private var exportingDocumentUrl: URL? = nil
+    @State private var didEncounterExportFailure: Bool = false
 
     private func completeMigration() {
         completionHandler(.confirm, context)
@@ -247,7 +247,15 @@ struct MigrationExportView: View {
 
     private func exportDocument() {
         guard let migrationData else { return }
-        exportingDocument = ExportableAccounts(accountData: migrationData)
+        do {
+            let parent = FileManager.default.temporaryDirectory.appending(path: UUID().uuidString, directoryHint: .isDirectory)
+            try FileManager.default.createDirectory(at: parent, withIntermediateDirectories: true)
+            let fileUrl = parent.appending(path: "Tofu Account Migration Data.tofumigration", directoryHint: .notDirectory)
+            try migrationData.write(to: fileUrl)
+            exportingDocumentUrl = fileUrl
+        } catch {
+            didEncounterExportFailure = true
+        }
     }
 
     var body: some View {
@@ -280,6 +288,8 @@ struct MigrationExportView: View {
                 Button(action: exportDocument, label: {
                     Text(.migrateAccountsButtonTitle(imageValue: Image(systemName: "arrow.up.doc"))) })
                 .disabled(migrationData == nil)
+                // This is an anchor for the UIKit-world UIDocumentInteractionController.
+                .background(content: { OpenDocumentController(presentationUrl: $exportingDocumentUrl) })
             }(), secondaryButtons: [Button(action: cancelMigration, label: {
                 Text(.migrateLaterButtonTitle)
             })])
@@ -289,14 +299,9 @@ struct MigrationExportView: View {
         .alert(.legacyMigrationEncryptionFailedTitle, isPresented: $didEncounterEncryptionFailure, actions: {
             Button(role: .cancel, action: {}, label: { Text(.oKButtonTitle) })
         }, message: { Text(.legacyMigrationEncryptionFailedMessage) })
-        .alert(.legacyMigrationUrlHandingFailedTitle, isPresented: $didEncounterUrlFailure, actions: {
+        .alert(.legacyMigrationDocumentHandlingFailedTitle, isPresented: $didEncounterExportFailure, actions: {
             Button(role: .cancel, action: {}, label: { Text(.oKButtonTitle) })
-        }, message: { Text(.legacyMigrationUrlHandingFailedMessage) })
-        .sheet(item: $exportingDocument) { document in
-            ActivityViewController(activityItems: [document]) { success, exportedTo in
-                if success { completeMigration() }
-            }
-        }
+        }, message: { Text(.legacyMigrationDocumentHandlingFailedMessage) })
         .task {
             let accounts = context.accounts
             guard let passcode = context.passcode else {
@@ -428,16 +433,5 @@ struct BottomSafeAreaButtons<PrimaryButton: View, SecondaryButton: View>: View {
                 .background(Color.systemBackground) // This is needed to extend into the safe area
         }
         .padding(.horizontal, 20.0)
-    }
-}
-
-// MARK: - Previews
-
-@available(iOS 16.0, *)
-struct FlowPreviews: PreviewProvider {
-    static var previews: some View {
-        MigrationPasscodeCollectionView(context: .init(isAutomaticPresentation: true, previousDeferCount: 0, accounts: [],
-                                                       passcodeDigitCount: 6, passcode: nil),
-                                        completionHandler: { _, _ in })
     }
 }

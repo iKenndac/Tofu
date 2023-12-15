@@ -36,5 +36,5 @@
 "LegacyMigrationEncryptionFailedTitle" = "Failed to Encrypt Data";
 "LegacyMigrationEncryptionFailedMessage" = "Received an error when encrypting your accounts.";
 
-"LegacyMigrationUrlHandingFailedTitle" = "Failed to Migrate Accounts";
-"LegacyMigrationUrlHandingFailedMessage" = "The system indicated the the migration request was not handled successfully.\n\nMake sure you have Tofu 2 installed. If you installed it recently, you may need to relaunch both it and this app to get everything registered correctly.";
+"LegacyMigrationDocumentHandlingFailedTitle" = "Failed to Migrate Accounts";
+"LegacyMigrationDocumentHandlingFailedMessage" = "The system indicated the the migration request was not handled successfully.\n\nMake sure you have Tofu 2 installed. If you installed it recently, you may need to relaunch both it and this app to get everything registered correctly.";
