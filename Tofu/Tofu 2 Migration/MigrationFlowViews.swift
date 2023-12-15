@@ -29,7 +29,7 @@ struct MigrationIntroView: View {
     }
 
     private func openInAppStore() {
-
+        UIApplication.shared.open(URL(string: "https://apps.apple.com/us/app/id6474446499")!)
     }
 
     private func openGitHubPage() {
@@ -95,12 +95,22 @@ struct MigrationIntroView: View {
                     }
                 }()
 
-                BottomSafeAreaButtons(primaryButton: Button(action: startMigration, label: {
-                    Text(.beginMigrationButtonTitle)
-                }).disabled(!tofu2Installed), secondaryButtons: [Button(action: cancelMigration, label: {
-                    Text(.migrateLaterButtonTitle)
-                }), finalButton]
-                )
+                let primaryButton: Button<Text> = {
+                    if tofu2Installed {
+                        Button(action: startMigration, label: {
+                            Text(.beginMigrationButtonTitle)
+                        })
+                    } else {
+                        Button(action: openInAppStore, label: {
+                            Text(.viewOnAppStoreButtonTitle)
+                        })
+                    }
+                }()
+
+                BottomSafeAreaButtons(primaryButton: primaryButton, secondaryButtons: [
+                    Button(action: cancelMigration, label: { Text(.migrateLaterButtonTitle) }),
+                    finalButton
+                ])
             }
         }
         .background(Color.systemBackground)
