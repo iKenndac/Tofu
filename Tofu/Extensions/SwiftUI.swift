@@ -39,6 +39,7 @@ struct ActivityViewController: UIViewControllerRepresentable {
 struct OpenDocumentController: UIViewControllerRepresentable {
 
     let presentationUrl: Binding<URL?>
+    let completionHandler: () -> Void
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<OpenDocumentController>) -> UIViewController {
         return UIViewController()
@@ -67,13 +68,9 @@ struct OpenDocumentController: UIViewControllerRepresentable {
             self.owner = owner
         }
 
-        func documentInteractionController(_ controller: UIDocumentInteractionController, 
-                                           didEndSendingToApplication application: String?) {
-            tidyUpDocumentInteractionState(success: true)
-        }
-
         func documentInteractionControllerDidDismissOpenInMenu(_ controller: UIDocumentInteractionController) {
-            // This doesn't mean failure. It seems impossible to tell with 100% reliability if a document open succeeded or not.
+            // This doesn't mean failure. It seems impossible to tell with 100% reliability if a document open succeeded
+            // or not, so we just have to forward back that the interaction controller closed.
             tidyUpDocumentInteractionState(success: true)
         }
 
@@ -83,6 +80,7 @@ struct OpenDocumentController: UIViewControllerRepresentable {
             }
             owner.presentationUrl.wrappedValue = nil
             documentInteractionController = nil
+            owner.completionHandler()
         }
     }
 }

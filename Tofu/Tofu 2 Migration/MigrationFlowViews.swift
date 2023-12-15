@@ -288,8 +288,10 @@ struct MigrationExportView: View {
                 Button(action: exportDocument, label: {
                     Text(.migrateAccountsButtonTitle(imageValue: Image(systemName: "arrow.up.doc"))) })
                 .disabled(migrationData == nil)
-                // This is an anchor for the UIKit-world UIDocumentInteractionController.
-                .background(content: { OpenDocumentController(presentationUrl: $exportingDocumentUrl) })
+                .background(content: {
+                    // This is an anchor for the UIKit-world UIDocumentInteractionController.
+                    OpenDocumentController(presentationUrl: $exportingDocumentUrl, completionHandler: completeMigration)
+                })
             }(), secondaryButtons: [Button(action: cancelMigration, label: {
                 Text(.migrateLaterButtonTitle)
             })])
