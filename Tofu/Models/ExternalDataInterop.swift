@@ -2,7 +2,6 @@ import Foundation
 import CryptoKit
 import CommonCrypto
 import UniformTypeIdentifiers
-import LinkPresentation
 
 class ExternalDataInterop {
 
@@ -135,45 +134,5 @@ class ExternalDataInterop {
             guard derivationStatus == kCCSuccess else { throw ExternalDataInteropError.encryptionFailed }
             return derivedKeyData
         }
-    }
-}
-
-@available(iOS 16.0, *)
-class ExportableAccounts: NSObject, UIActivityItemSource, Identifiable {
-
-    init(accountData: Data) {
-        self.accountData = accountData
-    }
-
-    let accountData: Data
-
-    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
-        return accountData
-    }
-
-    func activityViewController(_ activityViewController: UIActivityViewController,
-                                itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-        return accountData
-    }
-
-    func activityViewController(_ activityViewController: UIActivityViewController,
-                                dataTypeIdentifierForActivityType activityType: UIActivity.ActivityType?) -> String {
-        return ExternalDataInterop.migrationDocumentType.identifier
-    }
-
-    func activityViewController(_ activityViewController: UIActivityViewController,
-                                thumbnailImageForActivityType activityType: UIActivity.ActivityType?,
-                                suggestedSize size: CGSize) -> UIImage? {
-        return UIImage(named: "MigrationAppIcon")
-    }
-
-    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
-        let metadata = LPLinkMetadata()
-        metadata.title = Localizable.migrationDataExportSheetTitle
-        if let icon = UIImage(named: "MigrationAppIcon") {
-            metadata.imageProvider = NSItemProvider(object: icon)
-            metadata.iconProvider = NSItemProvider(object: icon)
-        }
-        return metadata
     }
 }

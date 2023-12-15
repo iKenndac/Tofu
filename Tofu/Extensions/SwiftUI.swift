@@ -19,23 +19,6 @@ extension Color {
     }
 }
 
-struct ActivityViewController: UIViewControllerRepresentable {
-
-    let activityItems: [Any]
-    let completionHandler: (Bool, UIActivity.ActivityType?) -> Void
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
-        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: [])
-        controller.completionWithItemsHandler = { type, completed, _, _ in
-            completionHandler(completed, type)
-        }
-        return controller
-    }
-
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) {}
-
-}
-
 struct OpenDocumentController: UIViewControllerRepresentable {
 
     let presentationUrl: Binding<URL?>
