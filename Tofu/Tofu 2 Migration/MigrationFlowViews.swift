@@ -234,7 +234,8 @@ struct MigrationExportView: View {
 
     @State private var didEncounterEncryptionFailure: Bool = false
     @State private var didEncounterUrlFailure: Bool = false
-    @State private var migrationUrl: URL? = nil
+    @State private var migrationData: Data? = nil
+    @State private var exportingDocument: ExportableAccounts? = nil
 
     private func completeMigration() {
         completionHandler(.confirm, context)
@@ -244,15 +245,9 @@ struct MigrationExportView: View {
         completionHandler(.cancel, context)
     }
 
-    private func exportData() {
-        guard let migrationUrl else { return }
-        UIApplication.shared.open(migrationUrl) { success in
-            if success { 
-                completeMigration()
-            } else {
-                didEncounterUrlFailure = true
-            }
-        }
+    private func exportDocument() {
+        guard let migrationData else { return }
+        exportingDocument = ExportableAccounts(accountData: migrationData)
     }
 
     var body: some View {
@@ -268,6 +263,10 @@ struct MigrationExportView: View {
                                                             formatValue: "\(context.accounts.count)"))
                         .font(.system(size: 15.0))
                         .multilineTextAlignment(.center)
+
+                    Text(.legacyMigrationInstructions)
+                        .font(.system(size: 15.0))
+                        .multilineTextAlignment(.center)
                 }
                 .padding(.horizontal, 20.0)
                 .padding(.top, 60.0)
@@ -278,9 +277,9 @@ struct MigrationExportView: View {
         }
         .safeAreaInset(edge: .bottom) {
             BottomSafeAreaButtons(primaryButton: {
-                Button(action: exportData, label: {
-                    Text(.migrateAccountsButtonTitle(imageValue: Image(systemName: "arrow.up.forward.app"))) })
-                    .disabled(migrationUrl == nil)
+                Button(action: exportDocument, label: {
+                    Text(.migrateAccountsButtonTitle(imageValue: Image(systemName: "arrow.up.doc"))) })
+                .disabled(migrationData == nil)
             }(), secondaryButtons: [Button(action: cancelMigration, label: {
                 Text(.migrateLaterButtonTitle)
             })])
@@ -293,6 +292,11 @@ struct MigrationExportView: View {
         .alert(.legacyMigrationUrlHandingFailedTitle, isPresented: $didEncounterUrlFailure, actions: {
             Button(role: .cancel, action: {}, label: { Text(.oKButtonTitle) })
         }, message: { Text(.legacyMigrationUrlHandingFailedMessage) })
+        .sheet(item: $exportingDocument) { document in
+            ActivityViewController(activityItems: [document]) { success, exportedTo in
+                if success { completeMigration() }
+            }
+        }
         .task {
             let accounts = context.accounts
             guard let passcode = context.passcode else {
@@ -303,8 +307,7 @@ struct MigrationExportView: View {
                 let encrypter = ExternalDataInterop()
                 do {
                     let encryptedAccounts = try encrypter.encryptedData(for: accounts, with: passcode)
-                    let migrationUrl = try encrypter.migrationUrl(for: encryptedAccounts)
-                    DispatchQueue.main.async { self.migrationUrl = migrationUrl }
+                    DispatchQueue.main.async { self.migrationData = encryptedAccounts }
                 } catch {
                     DispatchQueue.main.async { self.didEncounterEncryptionFailure = true }
                 }

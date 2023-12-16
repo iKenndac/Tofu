@@ -1,6 +1,8 @@
 import Foundation
 import CryptoKit
 import CommonCrypto
+import UniformTypeIdentifiers
+import LinkPresentation
 
 class ExternalDataInterop {
 
@@ -10,6 +12,12 @@ class ExternalDataInterop {
         case encryptionFailed
     }
 
+    /// The UTType of the migration file.
+    @available(iOS 16.0, *)
+    static var migrationDocumentType: UTType {
+        return UTType(exportedAs: "org.danielkennett.twofu.migration", conformingTo: .data)
+    }
+
     /// Encrypt the given accounts with the given passcode. A random salt will be generated.
     func encryptedData(for accounts: [Account], with passcode: String) throws -> Data {
         let encodedAccounts = try NSKeyedArchiver.archivedData(withRootObject: accounts, requiringSecureCoding: true)
@@ -17,16 +25,6 @@ class ExternalDataInterop {
                                                       with: .aesGCMWithSalted256BitSHAPBKDF2DerivedKey,
                                                       password: passcode)
         return try NSKeyedArchiver.archivedData(withRootObject: container, requiringSecureCoding: true)
-    }
-
-    /// Generate a migration URL for the given encrypted data.
-    func migrationUrl(for encryptedData: Data) throws -> URL {
-        let base64Data = encryptedData.base64EncodedString()
-        var components = URLComponents()
-        components.scheme = "tofu2-migrate"
-        components.path = "import/" + base64Data
-        guard let url = components.url else { throw ExternalDataInteropError.invalidData }
-        return url
     }
 
     /// Attempt to decrypt the given accounts with using the given passcode.
@@ -137,5 +135,45 @@ class ExternalDataInterop {
             guard derivationStatus == kCCSuccess else { throw ExternalDataInteropError.encryptionFailed }
             return derivedKeyData
         }
+    }
+}
+
+@available(iOS 16.0, *)
+class ExportableAccounts: NSObject, UIActivityItemSource, Identifiable {
+
+    init(accountData: Data) {
+        self.accountData = accountData
+    }
+
+    let accountData: Data
+
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        return accountData
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController,
+                                itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+        return accountData
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController,
+                                dataTypeIdentifierForActivityType activityType: UIActivity.ActivityType?) -> String {
+        return ExternalDataInterop.migrationDocumentType.identifier
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController,
+                                thumbnailImageForActivityType activityType: UIActivity.ActivityType?,
+                                suggestedSize size: CGSize) -> UIImage? {
+        return UIImage(named: "MigrationAppIcon")
+    }
+
+    func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
+        let metadata = LPLinkMetadata()
+        metadata.title = Localizable.migrationDataExportSheetTitle
+        if let icon = UIImage(named: "MigrationAppIcon") {
+            metadata.imageProvider = NSItemProvider(object: icon)
+            metadata.iconProvider = NSItemProvider(object: icon)
+        }
+        return metadata
     }
 }

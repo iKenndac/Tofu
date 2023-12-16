@@ -11,6 +11,7 @@
 "ViewOnAppStoreButtonTitle" = "Download Tofu 2";
 "BeginMigrationButtonTitle" = "Begin Migration";
 "MigrateAccountsButtonTitle %@" = "Migrate Accounts  %@";
+"MigrationDataExportSheetTitle" = "Tofu Migration Data";
 
 "LegacyMigrationTitle" = "Migrate to Tofu 2";
 
@@ -27,8 +28,10 @@
 "LegacyMigrationPasscodesDifferentBody" = "Passcodes didn't match. Please try again.";
 
 "LegacyMigrationReadyToMigrateTitle" = "Ready to Migrate";
-"LegacyMigrationReadyToMigrateBody %@" = "You're now ready to migrate %@ account to Tofu 2!\n\nYou'll need to enter your passcode again on the import side. Once you've confirmed that your accounts are safely in Tofu 2, you can delete this app.";
-"LegacyMigrationReadyToMigrateBody_Plural %@" = "You're now ready to migrate %@ accounts to Tofu 2!\n\nYou'll need to enter your passcode again on the import side. Once you've confirmed that your accounts are safely in Tofu 2, you can delete this app.";
+"LegacyMigrationReadyToMigrateBody %@" = "You're now ready to migrate %@ account to Tofu 2!";
+"LegacyMigrationReadyToMigrateBody_Plural %@" = "You're now ready to migrate %@ accounts to Tofu 2!";
+
+"LegacyMigrationInstructions" = "**Step 1**\n\nTap **Migrate Accounts** below to bring up the share sheet, then choose to either open your migrated accounts directly in Tofu 2, or save your accounts to a location of your choosing.\n\n**Step 2**\n\nIf you didn't open directly in Tofu 2, open Tofu 2, choose **Import Backup…**, then choose your saved accounts file.\n\n**Step 3**\n\nFollow the instructions in Tofu 2 — you'll need to enter your passcode again.\n\nOnce you've confirmed that your accounts are safely in Tofu 2, you can delete this app.";
 
 "LegacyMigrationEncryptionFailedTitle" = "Failed to Encrypt Data";
 "LegacyMigrationEncryptionFailedMessage" = "Received an error when encrypting your accounts.";
