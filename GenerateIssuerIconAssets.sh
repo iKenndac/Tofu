@@ -35,7 +35,7 @@ EOF
 }
 
 cd "$(dirname "$0")"
-for file in ./IssuerIcons/*.png; do
+for file in "$(git ls-files --others --exclude-standard ./IssuerIcons)"; do
   name="$(get_name $file)"
   echo "Generating icon for ${name}"
   imageset="./Tofu/Assets.xcassets/${name}.imageset/"
