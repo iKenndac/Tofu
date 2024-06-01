@@ -47,15 +47,3 @@ Here's an example commit for adding a new icon: [692e32a](https://github.com/cal
 
 If you don't feel comfortable adding icons yourself, you can ask others to do
 so by [opening issues using the Issuer Icon Request template](https://github.com/calleerlandsson/Tofu/issues/new?labels=icon+request&template=issuer-icon-request.md&title=Add+an+icon+for+Example).
-
-## Beta testing
-
-To avoid releasing broken versions of Tofu on the App Store, we rely on beta
-testers to discover and report bugs and other issues.
-
-If you'd like to help us test new versions of the app, use this link to join
-the TestFlight beta: https://testflight.apple.com/join/LLe6CFdo
-
-To leave the beta, open the TestFlight app, tap on Tofu Authenticator, scroll
-to the bottom and tap on "Stop Testing". Then re-install the release version of
-Tofu from the App Store.
