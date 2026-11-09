@@ -190,10 +190,7 @@ class AccountCell: UITableViewCell {
 
         updateColors()
 
-        let featureSettings: [[UIFontDescriptor.FeatureKey: Any]] =
-            [[.featureIdentifier: kNumberSpacingType, .typeIdentifier: kMonospacedNumbersSelector]]
-        let fontDescriptor = valueLabel.font.fontDescriptor.addingAttributes([.featureSettings: featureSettings])
-        valueLabel.font = UIFont(descriptor: fontDescriptor, size: 0)
+        valueLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 44.0, weight: .thin)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
         button.setTitle("NEXT", for: UIControl.State())
         button.setTitleColor(tintColor, for: UIControl.State())
