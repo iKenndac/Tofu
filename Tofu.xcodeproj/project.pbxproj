@@ -330,7 +330,6 @@
 				TargetAttributes = {
 					25A81D091C500E9C008E51B9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = QG8TM5XJ84;
 						LastSwiftMigration = 1020;
 					};
 					25A81D1D1C500E9C008E51B9 = {
@@ -637,7 +636,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = QG8TM5XJ84;
+				DEVELOPMENT_TEAM = Z3SAA98JEE;
 				INFOPLIST_FILE = Tofu/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILT_PRODUCTS_DIR}/include/TofuVersions.h";
@@ -662,7 +661,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = QG8TM5XJ84;
+				DEVELOPMENT_TEAM = Z3SAA98JEE;
 				INFOPLIST_FILE = Tofu/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILT_PRODUCTS_DIR}/include/TofuVersions.h";
@@ -683,6 +682,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = Z3SAA98JEE;
 				INFOPLIST_FILE = TofuTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -701,6 +701,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = Z3SAA98JEE;
 				INFOPLIST_FILE = TofuTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -718,6 +719,7 @@
 		25A81D391C500E9C008E51B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = Z3SAA98JEE;
 				INFOPLIST_FILE = TofuUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -736,6 +738,7 @@
 		25A81D3A1C500E9C008E51B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = Z3SAA98JEE;
 				INFOPLIST_FILE = TofuUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
