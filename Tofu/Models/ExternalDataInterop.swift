@@ -1,6 +1,7 @@
 import Foundation
 import CryptoKit
 import CommonCrypto
+import UniformTypeIdentifiers
 
 class ExternalDataInterop {
 
@@ -8,6 +9,19 @@ class ExternalDataInterop {
         case invalidPasscode
         case invalidData
         case encryptionFailed
+    }
+
+    /// The UTType of the migration file.
+    static var migrationDocumentType: UTType {
+        return UTType(exportedAs: "org.danielkennett.twofu.migration", conformingTo: .data)
+    }
+    
+    /// Check if the given file appears to be a valid migration document.
+    static func appearsToBeValidMigrationDocument(at url: URL) -> Bool {
+        // We can't tell *that* much without the encryption key, but we can give it a good guess.
+        guard let data = try? Data(contentsOf: url) else { return false }
+        let decodedContainer = try? NSKeyedUnarchiver.unarchivedObject(ofClass: EncryptedAccountContainer.self, from: data)
+        return (decodedContainer != nil)
     }
 
     /// Encrypt the given accounts with the given passcode. A random salt will be generated.
@@ -48,7 +62,7 @@ class ExternalDataInterop {
             // AES-GCM with a 256-bit encryption key derived with PBKDF2 with the SHA256 pseudo-random algorithm.
             case aesGCMWithSalted256BitSHAPBKDF2DerivedKey = 0
         }
-        
+
         /// Initialise a container with the given unencrypted data. The data will be encrypted with the given algorithm
         /// using sensible defaults for it. If a salt is needed, it'll be randomly generated.
         init(encrypting unEncryptedData: Data, with algorithm: Algorithm, password: String) throws {

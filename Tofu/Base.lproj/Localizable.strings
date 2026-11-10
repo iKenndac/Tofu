@@ -1,0 +1,25 @@
+"OKButtonTitle" = "OK";
+"LaterButtonTitle" = "Later";
+"ContinueButtonTitle %@" = "Continue %@";
+"DontShowAgainButtonTitle" = "Don't Show Again";
+"CancelButtonTitle" = "Cancel";
+
+// Importing Migration Archives
+
+"MigrationDocumentReadingFailedTitle" = "Invalid Migration Archive";
+"MigrationDocumentReadingFailedMessage" = "This file doesn't appear to be a valid Tofu migration archive.";
+
+"MigrationImportEnterPasscodeTitle" = "Enter Passcode";
+"MigrationImportEnterPasscodeBody" = "Please enter the passcode used to protect this migration.";
+"MigrationImportWrongPasscodeBody" = "Incorrect passcode. Please try again.";
+
+"ReadyToImportAccountsTitle" = "Ready to Import";
+"ReadyToImportAccountsBody %@" = "You're ready import %@ account into Tofu 2!";
+"ReadyToImportAccountsBody_Plural %@" = "You're ready to import %@ accounts into Tofu 2!";
+"ReadyToImportNoImportableAccountsBody" = "There's nothing available to import!";
+
+"ImportAccountsButtonTitle %@" = "Import  %@";
+
+"ImportFailedTitle" = "Import Failed";
+"ImportFailedMessage %@" = "%@ account failed to import. Please try again.";
+"ImportFailedMessage_Plural %@" = "%@ accounts failed to import. Please try again.";

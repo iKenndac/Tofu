@@ -24,9 +24,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
 
         guard let window, let rootViewController = window.rootViewController else { return }
+        guard let accountsViewController = rootViewController.children.first as? AccountsViewController else { return }
 
         for context in URLContexts {
             let url = context.url
+
+            if url.isFileURL, url.pathExtension == "tofumigration" {
+                handleOpeningOfMigrationArchive(at: url, accountDestination: accountsViewController,
+                                                presentingIn: rootViewController)
+                continue
+            }
 
             guard let account = Account(url: url) else {
                 let alert = UIAlertController(
@@ -39,7 +46,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 return
             }
 
-            let accountsViewController = rootViewController.children.first as! AccountsViewController
             accountsViewController.createAccount(account)
 
             let alert = UIAlertController(
@@ -50,6 +56,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             rootViewController.present(alert, animated: true)
         }
+    }
+
+    func handleOpeningOfMigrationArchive(at archiveUrl: URL, accountDestination: AccountCreationDelegate,
+                                         presentingIn viewController: UIViewController) {
+        guard ExternalDataInterop.appearsToBeValidMigrationDocument(at: archiveUrl),
+              let data = try? Data(contentsOf: archiveUrl) else {
+            let alert = UIAlertController(
+                title: Localizable.migrationDocumentReadingFailedTitle,
+                message: Localizable.migrationDocumentReadingFailedMessage,
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Localizable.oKButtonTitle, style: .default))
+            viewController.present(alert, animated: true)
+            return
+        }
+
+        MigrationImportController.presentImport(from: data, at: archiveUrl, into: Keychain().accounts,
+                                                importedAccountDestination: accountDestination,
+                                                presentingIn: viewController, animated: true)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -295,6 +295,36 @@ extension AccountsViewController: UIImagePickerControllerDelegate, UINavigationC
 }
 
 extension AccountsViewController: AccountCreationDelegate {
+
+    func createAccounts(_ incomingAccounts: [Account]) {
+        var insertedAccounts: [Account] = []
+        for account in incomingAccounts {
+            if keychain.insertAccount(account) {
+                insertedAccounts.append(account)
+            }
+        }
+
+        accounts.append(contentsOf: insertedAccounts)
+        persistAccountOrder()
+        // Since this might be a bunch of additions, we're just going to reloadData.
+        tableView.reloadData()
+        updateEditing()
+
+        let failureCount = (incomingAccounts.count - insertedAccounts.count)
+        if failureCount > 0 {
+            // This is a bit yucky, but the import sheet will be coming down as this is called.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                let alertController = UIAlertController(title: Localizable.importFailedTitle,
+                                                        message: Localizable.importFailedMessage(pluralizationCount: failureCount,
+                                                                                                 formatValue: "\(failureCount)"),
+                                                        preferredStyle: .alert)
+                let okAction = UIAlertAction(title: Localizable.oKButtonTitle, style: .cancel, handler: nil)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+
     func createAccount(_ account: Account) {
         guard keychain.insertAccount(account) else {
             presentTryAgainAlertWithTitle(

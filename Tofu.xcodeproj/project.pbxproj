@@ -34,6 +34,13 @@
 		25CF8B6C1C57946B00665FFE /* AlgorithmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF8B6B1C57946B00665FFE /* AlgorithmsViewController.swift */; };
 		5098665430A26E28006561AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098665330A26E25006561AC /* SceneDelegate.swift */; };
 		50C456A12B2325A0009C83C6 /* ExternalDataInterop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C456A02B2325A0009C83C6 /* ExternalDataInterop.swift */; };
+		50D6A1FF30A3566000FC19C3 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A1FE30A3566000FC19C3 /* FlowCoordinator.swift */; };
+		50D6A20230A3570600FC19C3 /* ImportFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A20130A3570600FC19C3 /* ImportFlow.swift */; };
+		50D6A20530A35E9000FC19C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50D6A20430A35E9000FC19C3 /* Localizable.strings */; };
+		50D6A22430A3609E00FC19C3 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A22330A3609E00FC19C3 /* URL.swift */; };
+		50D6A22D30A360EE00FC19C3 /* ImportFlowViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A22B30A360EB00FC19C3 /* ImportFlowViews.swift */; };
+		50D6A23730A3616600FC19C3 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A23630A3616600FC19C3 /* SwiftUI.swift */; };
+		50D6A23B30A3617600FC19C3 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A23A30A3617600FC19C3 /* ButtonStyles.swift */; };
 		EB61B64D25D2BE15000B1735 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB61B64C25D2BE15000B1735 /* UIViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +96,13 @@
 		5098665330A26E25006561AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		50C456992B232054009C83C6 /* Tofu.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Tofu.xcconfig; path = Tofu/Tofu.xcconfig; sourceTree = "<group>"; };
 		50C456A02B2325A0009C83C6 /* ExternalDataInterop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDataInterop.swift; sourceTree = "<group>"; };
+		50D6A1FE30A3566000FC19C3 /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
+		50D6A20130A3570600FC19C3 /* ImportFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFlow.swift; sourceTree = "<group>"; };
+		50D6A20330A35E9000FC19C3 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		50D6A22330A3609E00FC19C3 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		50D6A22B30A360EB00FC19C3 /* ImportFlowViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFlowViews.swift; sourceTree = "<group>"; };
+		50D6A23630A3616600FC19C3 /* SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI.swift; sourceTree = "<group>"; };
+		50D6A23A30A3617600FC19C3 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		EB61B64C25D2BE15000B1735 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,12 +160,14 @@
 				50C4569D2B232507009C83C6 /* Models */,
 				50C4569E2B23251B009C83C6 /* Views */,
 				50C4569F2B23252D009C83C6 /* Controllers */,
+				50D6A20030A356EB00FC19C3 /* Tofu Migration Import */,
 				25A81D0D1C500E9C008E51B9 /* AppDelegate.swift */,
 				5098665330A26E25006561AC /* SceneDelegate.swift */,
 				25A81D111C500E9C008E51B9 /* Main.storyboard */,
 				25A81D161C500E9C008E51B9 /* LaunchScreen.storyboard */,
 				25A81D141C500E9C008E51B9 /* Assets.xcassets */,
 				25A81D191C500E9C008E51B9 /* Info.plist */,
+				50D6A20430A35E9000FC19C3 /* Localizable.strings */,
 			);
 			path = Tofu;
 			sourceTree = "<group>";
@@ -179,8 +195,10 @@
 		50C4569B2B2324E2009C83C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				50D6A22330A3609E00FC19C3 /* URL.swift */,
 				25A81D441C53923D008E51B9 /* Data.swift */,
 				EB61B64C25D2BE15000B1735 /* UIViewController.swift */,
+				50D6A23630A3616600FC19C3 /* SwiftUI.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -212,6 +230,7 @@
 			children = (
 				25A81D501C551F17008E51B9 /* AccountCell.swift */,
 				25A81D5A1C5F656A008E51B9 /* CircularProgressView.swift */,
+				50D6A23A30A3617600FC19C3 /* ButtonStyles.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -226,8 +245,18 @@
 				25A81D561C5DFC5C008E51B9 /* ScanningViewController.swift */,
 				251A79861C7A68BC00E2747E /* AccountSearchResultsViewController.swift */,
 				250CB0101C81BF0B00D48AC9 /* AccountsTableViewUpdater.swift */,
+				50D6A1FE30A3566000FC19C3 /* FlowCoordinator.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		50D6A20030A356EB00FC19C3 /* Tofu Migration Import */ = {
+			isa = PBXGroup;
+			children = (
+				50D6A20130A3570600FC19C3 /* ImportFlow.swift */,
+				50D6A22B30A360EB00FC19C3 /* ImportFlowViews.swift */,
+			);
+			path = "Tofu Migration Import";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +274,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				50D6A20930A35ECD00FC19C3 /* PBXTargetDependency */,
 			);
 			name = "Tofu 2";
 			productName = Tofu;
@@ -324,6 +354,9 @@
 				Base,
 			);
 			mainGroup = 25A81D011C500E9B008E51B9;
+			packageReferences = (
+				50D6A20730A35EC400FC19C3 /* XCRemoteSwiftPackageReference "localized-strings-symbols" */,
+			);
 			productRefGroup = 25A81D0B1C500E9C008E51B9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -341,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25A81D181C500E9C008E51B9 /* LaunchScreen.storyboard in Resources */,
+				50D6A20530A35E9000FC19C3 /* Localizable.strings in Resources */,
 				25A81D151C500E9C008E51B9 /* Assets.xcassets in Resources */,
 				25A81D131C500E9C008E51B9 /* Main.storyboard in Resources */,
 			);
@@ -396,17 +430,23 @@
 				EB61B64D25D2BE15000B1735 /* UIViewController.swift in Sources */,
 				251A79871C7A68BC00E2747E /* AccountSearchResultsViewController.swift in Sources */,
 				25A81D0E1C500E9C008E51B9 /* AppDelegate.swift in Sources */,
+				50D6A20230A3570600FC19C3 /* ImportFlow.swift in Sources */,
 				25A81D451C53923D008E51B9 /* Data.swift in Sources */,
 				2506E6E51C6F9A5A00E694D3 /* Algorithm.swift in Sources */,
+				50D6A23730A3616600FC19C3 /* SwiftUI.swift in Sources */,
 				5098665430A26E28006561AC /* SceneDelegate.swift in Sources */,
+				50D6A22D30A360EE00FC19C3 /* ImportFlowViews.swift in Sources */,
 				259FAC541C765FEB0013B4F7 /* AlgorithmSelectionDelegate.swift in Sources */,
 				25A81D5B1C5F656A008E51B9 /* CircularProgressView.swift in Sources */,
 				2506E6E31C6F83AE00E694D3 /* Password.swift in Sources */,
+				50D6A22430A3609E00FC19C3 /* URL.swift in Sources */,
+				50D6A1FF30A3566000FC19C3 /* FlowCoordinator.swift in Sources */,
 				25A81D571C5DFC5C008E51B9 /* ScanningViewController.swift in Sources */,
 				25CF8B6C1C57946B00665FFE /* AlgorithmsViewController.swift in Sources */,
 				25A81D3C1C502755008E51B9 /* Keychain.swift in Sources */,
 				250CB0111C81BF0B00D48AC9 /* AccountsTableViewUpdater.swift in Sources */,
 				259FAC501C765BB00013B4F7 /* AccountCreationDelegate.swift in Sources */,
+				50D6A23B30A3617600FC19C3 /* ButtonStyles.swift in Sources */,
 				25A81D551C5BC31B008E51B9 /* AccountUpdateViewController.swift in Sources */,
 				25A81D3E1C51758C008E51B9 /* AccountCreationViewController.swift in Sources */,
 				25A81D431C5176F0008E51B9 /* Account.swift in Sources */,
@@ -445,6 +485,10 @@
 			target = 25A81D091C500E9C008E51B9 /* Tofu 2 */;
 			targetProxy = 25A81D2A1C500E9C008E51B9 /* PBXContainerItemProxy */;
 		};
+		50D6A20930A35ECD00FC19C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 50D6A20830A35ECD00FC19C3 /* Generate Strings File Symbols */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -462,6 +506,14 @@
 				25A81D171C500E9C008E51B9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		50D6A20430A35E9000FC19C3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50D6A20330A35E9000FC19C3 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -516,7 +568,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -568,7 +620,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -739,6 +791,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		50D6A20730A35EC400FC19C3 /* XCRemoteSwiftPackageReference "localized-strings-symbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iKenndac/localized-strings-symbols";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		50D6A20830A35ECD00FC19C3 /* Generate Strings File Symbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50D6A20730A35EC400FC19C3 /* XCRemoteSwiftPackageReference "localized-strings-symbols" */;
+			productName = "plugin:Generate Strings File Symbols";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 25A81D021C500E9B008E51B9 /* Project object */;
 }
