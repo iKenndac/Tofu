@@ -2,8 +2,13 @@ import UIKit
 
 private let accountCellIdentifier = "AccountCell"
 
-class AccountSearchResultsViewController: UITableViewController, AccountUpdateDelegate {
+class AccountSearchResultsViewController: UITableViewController, AccountUpdateDelegate, UIEditMenuInteractionDelegate {
     @IBOutlet var emptyView: UIView!
+
+    private lazy var editMenuInteraction: UIEditMenuInteraction = {
+        return UIEditMenuInteraction(delegate: self)
+    }()
+
     var accounts: [Account]! {
         didSet {
             tableView.reloadData()
@@ -16,12 +21,7 @@ class AccountSearchResultsViewController: UITableViewController, AccountUpdateDe
         super.viewDidLoad()
         let updater = AccountsTableViewUpdater(tableView: tableView)
         updater.startUpdating()
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(deselectSelectedTableViewRow),
-            name: UIMenuController.willHideMenuNotification,
-            object: nil)
+        tableView.addInteraction(editMenuInteraction)
     }
 
     @objc func deselectSelectedTableViewRow() {
@@ -29,28 +29,49 @@ class AccountSearchResultsViewController: UITableViewController, AccountUpdateDe
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
-    
+
+    // MARK: UIEditMenuInteractionDelegate
+
+    private var editMenuVisible: Bool = false
+
+    func editMenuInteraction(_ interaction: UIEditMenuInteraction, willPresentMenuFor configuration: UIEditMenuConfiguration,
+                             animator: any UIEditMenuInteractionAnimating) {
+        editMenuVisible = true
+    }
+
+    func editMenuInteraction(_ interaction: UIEditMenuInteraction, willDismissMenuFor configuration: UIEditMenuConfiguration,
+                             animator: any UIEditMenuInteractionAnimating) {
+        editMenuVisible = false
+        deselectSelectedTableViewRow()
+    }
+
+    func editMenuInteraction(_ interaction: UIEditMenuInteraction, menuFor configuration: UIEditMenuConfiguration,
+                             suggestedActions: [UIMenuElement]) -> UIMenu? {
+        let copyItem = UIAction(title: Localizable.copyMenuItemTitle, image: nil) { [weak self] action in
+            guard let self, let tableView = self.tableView else { return }
+            if let indexPath = tableView.indexPathForSelectedRow {
+                tableView.cellForRow(at: indexPath)?.copy(self)
+            }
+        }
+
+        return UIMenu(title: Localizable.copyMenuItemTitle, image: nil, identifier: nil, options: .displayInline,
+                      children: [copyItem])
+    }
+
     // MARK: UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
-            guard let cellSuperview = cell.superview else {
-                assertionFailure("The cell does not seem to be in the view hierarchy. How is that even possible!?")
-                return
-            }
-
-            let menuController = UIMenuController.shared
-
             // If you tap the same cell twice, this condition prevents the menu from being
             // hidden and then instantly shown again causing an unpleasant flash.
             //
             // Since the cell could already be the first responder (from previously showing
             // its menu and then scrolling the table view) and the menu could already be
             // visible for another cell, we make sure to check both values.
-            if !(cell.isFirstResponder && menuController.isMenuVisible) {
+            if !(cell.isFirstResponder && editMenuVisible) {
                 cell.becomeFirstResponder()
-
-                menuController.showMenu(from: cellSuperview, rect: cell.frame)
+                let config = UIEditMenuConfiguration(identifier: nil, sourcePoint: CGPoint(x: cell.center.x, y: cell.frame.maxY))
+                editMenuInteraction.presentEditMenu(with: config)
             }
         }
     }
@@ -71,7 +92,7 @@ class AccountSearchResultsViewController: UITableViewController, AccountUpdateDe
         cell.delegate = self
         return cell
     }
-    
+
     // MARK: UITableViewDelegate
     
     override func tableView(_ tableView: UITableView,

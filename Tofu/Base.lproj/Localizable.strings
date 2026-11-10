@@ -4,6 +4,8 @@
 "DontShowAgainButtonTitle" = "Don't Show Again";
 "CancelButtonTitle" = "Cancel";
 
+"CopyMenuItemTitle" = "Copy";
+
 // Importing Migration Archives
 
 "MigrationDocumentReadingFailedTitle" = "Invalid Migration Archive";

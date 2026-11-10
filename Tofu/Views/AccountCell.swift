@@ -199,8 +199,13 @@ class AccountCell: UITableViewCell {
         button.layer.borderColor = button.tintColor.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 4
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = .init(top: 5.0, leading: 10.0, bottom: 5.0, trailing: 10.0)
+        config.cornerStyle = .fixed
+        button.configuration = config
         button.sizeToFit()
+
         let image = imageWithColor(tintColor, size: button.bounds.size)
         button.setBackgroundImage(image, for: .highlighted)
         button.setBackgroundImage(image, for: .selected)
