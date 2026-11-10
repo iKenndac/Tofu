@@ -134,16 +134,16 @@ struct ImportConfirmationView: View {
                     VStack(alignment: .leading, spacing: 20.0) {
                         ForEach(Array(candidateAccounts.enumerated()), id: \.element) { index, account in
                             VStack(alignment: .leading, spacing: 4.0) {
-                                Text(account.account.issuer ?? "—")
+                                Text(verbatim: account.account.issuer ?? Localizable.importNoIssuerLabel)
                                     .bold()
                                     .lineLimit(1, reservesSpace: true)
                                     .fixedSize()
-                                Text(account.account.name ?? "—")
+                                Text(verbatim: account.account.name ?? Localizable.importNoNameLabel)
                                     .lineLimit(1, reservesSpace: true)
                                     .fixedSize()
 
                                 if !account.canImport {
-                                    Text("Won't be imported (already present).")
+                                    Text(.importItemAlreadyPresentLabel)
                                         .lineLimit(1, reservesSpace: true)
                                         .fixedSize()
                                         .foregroundStyle(.red)
