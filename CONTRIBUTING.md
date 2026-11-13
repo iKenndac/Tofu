@@ -3,7 +3,7 @@
 We love pull requests from everyone. By participating in this project, you agree
 to abide by its [code of conduct].
 
-[code of conduct]: https://github.com/calleerlandsson/Tofu/blob/master/CODE_OF_CONDUCT.md
+[code of conduct]: https://github.com/iKenndac/Tofu/blob/main/CODE_OF_CONDUCT.md
 
 ## Getting Started
 
