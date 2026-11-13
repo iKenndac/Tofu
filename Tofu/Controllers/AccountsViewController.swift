@@ -2,7 +2,7 @@ import UIKit
 
 private let accountOrderKey = "persistentRefs"
 
-class AccountsViewController: UITableViewController {
+class AccountsViewController: UITableViewController, UIEditMenuInteractionDelegate {
     @IBOutlet weak var emptyView: UIView!
 
     private let keychain = Keychain()
@@ -10,6 +10,9 @@ class AccountsViewController: UITableViewController {
 
     private lazy var searchController = makeSearchController()
     private lazy var addAccountAlertController = makeAddAccountAlertController()
+    private lazy var editMenuInteraction: UIEditMenuInteraction = {
+        return UIEditMenuInteraction(delegate: self)
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +32,7 @@ class AccountsViewController: UITableViewController {
         updater.startUpdating()
 
         updateEditing()
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(deselectSelectedTableViewRow),
-            name: UIMenuController.willHideMenuNotification,
-            object: nil)
+        tableView.addInteraction(editMenuInteraction)
     }
 
     @objc func deselectSelectedTableViewRow() {
@@ -129,11 +127,38 @@ class AccountsViewController: UITableViewController {
         }
     }
 
+    // MARK: UIEditMenuInteractionDelegate
+
+    private var editMenuVisible: Bool = false
+
+    func editMenuInteraction(_ interaction: UIEditMenuInteraction, willPresentMenuFor configuration: UIEditMenuConfiguration,
+                             animator: any UIEditMenuInteractionAnimating) {
+        editMenuVisible = true
+    }
+
+    func editMenuInteraction(_ interaction: UIEditMenuInteraction, willDismissMenuFor configuration: UIEditMenuConfiguration,
+                             animator: any UIEditMenuInteractionAnimating) {
+        editMenuVisible = false
+        deselectSelectedTableViewRow()
+    }
+
+    func editMenuInteraction(_ interaction: UIEditMenuInteraction, menuFor configuration: UIEditMenuConfiguration,
+                             suggestedActions: [UIMenuElement]) -> UIMenu? {
+        let copyItem = UIAction(title: Localizable.copyMenuItemTitle, image: nil) { [weak self] action in
+            guard let self, let tableView = self.tableView else { return }
+            if let indexPath = tableView.indexPathForSelectedRow {
+                tableView.cellForRow(at: indexPath)?.copy(self)
+            }
+        }
+
+        return UIMenu(title: Localizable.copyMenuItemTitle, image: nil, identifier: nil, options: .displayInline,
+                      children: [copyItem])
+    }
+
     // MARK: UITableViewDataSource
 
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) ->
-        Bool {
-            return true
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -211,23 +236,16 @@ class AccountsViewController: UITableViewController {
             }
         } else { // Not editing
             if let cell = tableView.cellForRow(at: indexPath) {
-                guard let cellSuperview = cell.superview else {
-                    assertionFailure("The cell does not seem to be in the view hierarchy. How is that even possible!?")
-                    return
-                }
-
-                let menuController = UIMenuController.shared
-
                 // If you tap the same cell twice, this condition prevents the menu from being
                 // hidden and then instantly shown again causing an unpleasant flash.
                 //
                 // Since the cell could already be the first responder (from previously showing
                 // its menu and then scrolling the table view) and the menu could already be
                 // visible for another cell, we make sure to check both values.
-                if !(cell.isFirstResponder && menuController.isMenuVisible) {
+                if !(cell.isFirstResponder && editMenuVisible) {
                     cell.becomeFirstResponder()
-
-                    menuController.showMenu(from: cellSuperview, rect: cell.frame)
+                    let config = UIEditMenuConfiguration(identifier: nil, sourcePoint: CGPoint(x: cell.center.x, y: cell.frame.maxY))
+                    editMenuInteraction.presentEditMenu(with: config)
                 }
             }
         }
@@ -295,6 +313,36 @@ extension AccountsViewController: UIImagePickerControllerDelegate, UINavigationC
 }
 
 extension AccountsViewController: AccountCreationDelegate {
+
+    func createAccounts(_ incomingAccounts: [Account]) {
+        var insertedAccounts: [Account] = []
+        for account in incomingAccounts {
+            if keychain.insertAccount(account) {
+                insertedAccounts.append(account)
+            }
+        }
+
+        accounts.append(contentsOf: insertedAccounts)
+        persistAccountOrder()
+        // Since this might be a bunch of additions, we're just going to reloadData.
+        tableView.reloadData()
+        updateEditing()
+
+        let failureCount = (incomingAccounts.count - insertedAccounts.count)
+        if failureCount > 0 {
+            // This is a bit yucky, but the import sheet will be coming down as this is called.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                let alertController = UIAlertController(title: Localizable.importFailedTitle,
+                                                        message: Localizable.importFailedMessage(pluralizationCount: failureCount,
+                                                                                                 formatValue: "\(failureCount)"),
+                                                        preferredStyle: .alert)
+                let okAction = UIAlertAction(title: Localizable.oKButtonTitle, style: .cancel, handler: nil)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+
     func createAccount(_ account: Account) {
         guard keychain.insertAccount(account) else {
             presentTryAgainAlertWithTitle(

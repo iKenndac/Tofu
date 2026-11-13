@@ -32,7 +32,15 @@
 		25A81D571C5DFC5C008E51B9 /* ScanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A81D561C5DFC5C008E51B9 /* ScanningViewController.swift */; };
 		25A81D5B1C5F656A008E51B9 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A81D5A1C5F656A008E51B9 /* CircularProgressView.swift */; };
 		25CF8B6C1C57946B00665FFE /* AlgorithmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF8B6B1C57946B00665FFE /* AlgorithmsViewController.swift */; };
+		5098665430A26E28006561AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098665330A26E25006561AC /* SceneDelegate.swift */; };
 		50C456A12B2325A0009C83C6 /* ExternalDataInterop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C456A02B2325A0009C83C6 /* ExternalDataInterop.swift */; };
+		50D6A1FF30A3566000FC19C3 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A1FE30A3566000FC19C3 /* FlowCoordinator.swift */; };
+		50D6A20230A3570600FC19C3 /* ImportFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A20130A3570600FC19C3 /* ImportFlow.swift */; };
+		50D6A20530A35E9000FC19C3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50D6A20430A35E9000FC19C3 /* Localizable.strings */; };
+		50D6A22430A3609E00FC19C3 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A22330A3609E00FC19C3 /* URL.swift */; };
+		50D6A22D30A360EE00FC19C3 /* ImportFlowViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A22B30A360EB00FC19C3 /* ImportFlowViews.swift */; };
+		50D6A23730A3616600FC19C3 /* SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A23630A3616600FC19C3 /* SwiftUI.swift */; };
+		50D6A23B30A3617600FC19C3 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A23A30A3617600FC19C3 /* ButtonStyles.swift */; };
 		EB61B64D25D2BE15000B1735 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB61B64C25D2BE15000B1735 /* UIViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +69,7 @@
 		259FAC4F1C765BB00013B4F7 /* AccountCreationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCreationDelegate.swift; sourceTree = "<group>"; };
 		259FAC511C765F4B0013B4F7 /* AccountUpdateDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountUpdateDelegate.swift; sourceTree = "<group>"; };
 		259FAC531C765FEB0013B4F7 /* AlgorithmSelectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgorithmSelectionDelegate.swift; sourceTree = "<group>"; };
-		25A81D0A1C500E9C008E51B9 /* Tofu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tofu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		25A81D0A1C500E9C008E51B9 /* Tofu 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tofu 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A81D0D1C500E9C008E51B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25A81D0F1C500E9C008E51B9 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		25A81D121C500E9C008E51B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -85,8 +93,16 @@
 		25A81D561C5DFC5C008E51B9 /* ScanningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanningViewController.swift; sourceTree = "<group>"; };
 		25A81D5A1C5F656A008E51B9 /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		25CF8B6B1C57946B00665FFE /* AlgorithmsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgorithmsViewController.swift; sourceTree = "<group>"; };
+		5098665330A26E25006561AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		50C456992B232054009C83C6 /* Tofu.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Tofu.xcconfig; path = Tofu/Tofu.xcconfig; sourceTree = "<group>"; };
 		50C456A02B2325A0009C83C6 /* ExternalDataInterop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDataInterop.swift; sourceTree = "<group>"; };
+		50D6A1FE30A3566000FC19C3 /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
+		50D6A20130A3570600FC19C3 /* ImportFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFlow.swift; sourceTree = "<group>"; };
+		50D6A20330A35E9000FC19C3 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		50D6A22330A3609E00FC19C3 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		50D6A22B30A360EB00FC19C3 /* ImportFlowViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFlowViews.swift; sourceTree = "<group>"; };
+		50D6A23630A3616600FC19C3 /* SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI.swift; sourceTree = "<group>"; };
+		50D6A23A30A3617600FC19C3 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		EB61B64C25D2BE15000B1735 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,7 +145,7 @@
 		25A81D0B1C500E9C008E51B9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				25A81D0A1C500E9C008E51B9 /* Tofu.app */,
+				25A81D0A1C500E9C008E51B9 /* Tofu 2.app */,
 				25A81D1E1C500E9C008E51B9 /* TofuTests.xctest */,
 				25A81D291C500E9C008E51B9 /* TofuUITests.xctest */,
 			);
@@ -144,11 +160,14 @@
 				50C4569D2B232507009C83C6 /* Models */,
 				50C4569E2B23251B009C83C6 /* Views */,
 				50C4569F2B23252D009C83C6 /* Controllers */,
+				50D6A20030A356EB00FC19C3 /* Tofu Migration Import */,
 				25A81D0D1C500E9C008E51B9 /* AppDelegate.swift */,
+				5098665330A26E25006561AC /* SceneDelegate.swift */,
 				25A81D111C500E9C008E51B9 /* Main.storyboard */,
 				25A81D161C500E9C008E51B9 /* LaunchScreen.storyboard */,
 				25A81D141C500E9C008E51B9 /* Assets.xcassets */,
 				25A81D191C500E9C008E51B9 /* Info.plist */,
+				50D6A20430A35E9000FC19C3 /* Localizable.strings */,
 			);
 			path = Tofu;
 			sourceTree = "<group>";
@@ -176,8 +195,10 @@
 		50C4569B2B2324E2009C83C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				50D6A22330A3609E00FC19C3 /* URL.swift */,
 				25A81D441C53923D008E51B9 /* Data.swift */,
 				EB61B64C25D2BE15000B1735 /* UIViewController.swift */,
+				50D6A23630A3616600FC19C3 /* SwiftUI.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -209,6 +230,7 @@
 			children = (
 				25A81D501C551F17008E51B9 /* AccountCell.swift */,
 				25A81D5A1C5F656A008E51B9 /* CircularProgressView.swift */,
+				50D6A23A30A3617600FC19C3 /* ButtonStyles.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -223,16 +245,26 @@
 				25A81D561C5DFC5C008E51B9 /* ScanningViewController.swift */,
 				251A79861C7A68BC00E2747E /* AccountSearchResultsViewController.swift */,
 				250CB0101C81BF0B00D48AC9 /* AccountsTableViewUpdater.swift */,
+				50D6A1FE30A3566000FC19C3 /* FlowCoordinator.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		50D6A20030A356EB00FC19C3 /* Tofu Migration Import */ = {
+			isa = PBXGroup;
+			children = (
+				50D6A20130A3570600FC19C3 /* ImportFlow.swift */,
+				50D6A22B30A360EB00FC19C3 /* ImportFlowViews.swift */,
+			);
+			path = "Tofu Migration Import";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		25A81D091C500E9C008E51B9 /* Tofu */ = {
+		25A81D091C500E9C008E51B9 /* Tofu 2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 25A81D321C500E9C008E51B9 /* Build configuration list for PBXNativeTarget "Tofu" */;
+			buildConfigurationList = 25A81D321C500E9C008E51B9 /* Build configuration list for PBXNativeTarget "Tofu 2" */;
 			buildPhases = (
 				50C4569A2B2321D0009C83C6 /* Generate Version Headers */,
 				25A81D061C500E9C008E51B9 /* Sources */,
@@ -242,10 +274,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				50D6A20930A35ECD00FC19C3 /* PBXTargetDependency */,
 			);
-			name = Tofu;
+			name = "Tofu 2";
 			productName = Tofu;
-			productReference = 25A81D0A1C500E9C008E51B9 /* Tofu.app */;
+			productReference = 25A81D0A1C500E9C008E51B9 /* Tofu 2.app */;
 			productType = "com.apple.product-type.application";
 		};
 		25A81D1D1C500E9C008E51B9 /* TofuTests */ = {
@@ -292,12 +325,11 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 2720;
 				ORGANIZATIONNAME = "Daniel Kennett";
 				TargetAttributes = {
 					25A81D091C500E9C008E51B9 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = QG8TM5XJ84;
 						LastSwiftMigration = 1020;
 					};
 					25A81D1D1C500E9C008E51B9 = {
@@ -321,11 +353,14 @@
 				Base,
 			);
 			mainGroup = 25A81D011C500E9B008E51B9;
+			packageReferences = (
+				50D6A20730A35EC400FC19C3 /* XCRemoteSwiftPackageReference "localized-strings-symbols" */,
+			);
 			productRefGroup = 25A81D0B1C500E9C008E51B9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				25A81D091C500E9C008E51B9 /* Tofu */,
+				25A81D091C500E9C008E51B9 /* Tofu 2 */,
 				25A81D1D1C500E9C008E51B9 /* TofuTests */,
 				25A81D281C500E9C008E51B9 /* TofuUITests */,
 			);
@@ -338,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25A81D181C500E9C008E51B9 /* LaunchScreen.storyboard in Resources */,
+				50D6A20530A35E9000FC19C3 /* Localizable.strings in Resources */,
 				25A81D151C500E9C008E51B9 /* Assets.xcassets in Resources */,
 				25A81D131C500E9C008E51B9 /* Main.storyboard in Resources */,
 			);
@@ -393,16 +429,23 @@
 				EB61B64D25D2BE15000B1735 /* UIViewController.swift in Sources */,
 				251A79871C7A68BC00E2747E /* AccountSearchResultsViewController.swift in Sources */,
 				25A81D0E1C500E9C008E51B9 /* AppDelegate.swift in Sources */,
+				50D6A20230A3570600FC19C3 /* ImportFlow.swift in Sources */,
 				25A81D451C53923D008E51B9 /* Data.swift in Sources */,
 				2506E6E51C6F9A5A00E694D3 /* Algorithm.swift in Sources */,
+				50D6A23730A3616600FC19C3 /* SwiftUI.swift in Sources */,
+				5098665430A26E28006561AC /* SceneDelegate.swift in Sources */,
+				50D6A22D30A360EE00FC19C3 /* ImportFlowViews.swift in Sources */,
 				259FAC541C765FEB0013B4F7 /* AlgorithmSelectionDelegate.swift in Sources */,
 				25A81D5B1C5F656A008E51B9 /* CircularProgressView.swift in Sources */,
 				2506E6E31C6F83AE00E694D3 /* Password.swift in Sources */,
+				50D6A22430A3609E00FC19C3 /* URL.swift in Sources */,
+				50D6A1FF30A3566000FC19C3 /* FlowCoordinator.swift in Sources */,
 				25A81D571C5DFC5C008E51B9 /* ScanningViewController.swift in Sources */,
 				25CF8B6C1C57946B00665FFE /* AlgorithmsViewController.swift in Sources */,
 				25A81D3C1C502755008E51B9 /* Keychain.swift in Sources */,
 				250CB0111C81BF0B00D48AC9 /* AccountsTableViewUpdater.swift in Sources */,
 				259FAC501C765BB00013B4F7 /* AccountCreationDelegate.swift in Sources */,
+				50D6A23B30A3617600FC19C3 /* ButtonStyles.swift in Sources */,
 				25A81D551C5BC31B008E51B9 /* AccountUpdateViewController.swift in Sources */,
 				25A81D3E1C51758C008E51B9 /* AccountCreationViewController.swift in Sources */,
 				25A81D431C5176F0008E51B9 /* Account.swift in Sources */,
@@ -433,13 +476,17 @@
 /* Begin PBXTargetDependency section */
 		25A81D201C500E9C008E51B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 25A81D091C500E9C008E51B9 /* Tofu */;
+			target = 25A81D091C500E9C008E51B9 /* Tofu 2 */;
 			targetProxy = 25A81D1F1C500E9C008E51B9 /* PBXContainerItemProxy */;
 		};
 		25A81D2B1C500E9C008E51B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 25A81D091C500E9C008E51B9 /* Tofu */;
+			target = 25A81D091C500E9C008E51B9 /* Tofu 2 */;
 			targetProxy = 25A81D2A1C500E9C008E51B9 /* PBXContainerItemProxy */;
+		};
+		50D6A20930A35ECD00FC19C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 50D6A20830A35ECD00FC19C3 /* Generate Strings File Symbols */;
 		};
 /* End PBXTargetDependency section */
 
@@ -458,6 +505,14 @@
 				25A81D171C500E9C008E51B9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		50D6A20430A35E9000FC19C3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				50D6A20330A35E9000FC19C3 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -512,7 +567,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -564,7 +619,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -581,17 +636,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = QG8TM5XJ84;
+				DEVELOPMENT_TEAM = Z3SAA98JEE;
 				INFOPLIST_FILE = Tofu/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILT_PRODUCTS_DIR}/include/TofuVersions.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.calleerlandsson.Tofu;
+				PRODUCT_BUNDLE_IDENTIFIER = org.danielkennett.twofu;
+				PRODUCT_MODULE_NAME = Tofu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -606,17 +661,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = QG8TM5XJ84;
+				DEVELOPMENT_TEAM = Z3SAA98JEE;
 				INFOPLIST_FILE = Tofu/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${BUILT_PRODUCTS_DIR}/include/TofuVersions.h";
 				INFOPLIST_PREPROCESS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.calleerlandsson.Tofu;
+				PRODUCT_BUNDLE_IDENTIFIER = org.danielkennett.twofu;
+				PRODUCT_MODULE_NAME = Tofu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -627,7 +682,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = Z3SAA98JEE;
 				INFOPLIST_FILE = TofuTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -636,7 +693,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.calleerlandsson.TofuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tofu.app/Tofu";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tofu 2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tofu 2";
 			};
 			name = Debug;
 		};
@@ -644,7 +701,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = Z3SAA98JEE;
 				INFOPLIST_FILE = TofuTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -653,14 +712,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.calleerlandsson.TofuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tofu.app/Tofu";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tofu 2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tofu 2";
 			};
 			name = Release;
 		};
 		25A81D391C500E9C008E51B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = Z3SAA98JEE;
 				INFOPLIST_FILE = TofuUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -677,7 +738,9 @@
 		25A81D3A1C500E9C008E51B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = Z3SAA98JEE;
 				INFOPLIST_FILE = TofuUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -703,7 +766,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		25A81D321C500E9C008E51B9 /* Build configuration list for PBXNativeTarget "Tofu" */ = {
+		25A81D321C500E9C008E51B9 /* Build configuration list for PBXNativeTarget "Tofu 2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				25A81D331C500E9C008E51B9 /* Debug */,
@@ -731,6 +794,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		50D6A20730A35EC400FC19C3 /* XCRemoteSwiftPackageReference "localized-strings-symbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/iKenndac/localized-strings-symbols";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		50D6A20830A35ECD00FC19C3 /* Generate Strings File Symbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50D6A20730A35EC400FC19C3 /* XCRemoteSwiftPackageReference "localized-strings-symbols" */;
+			productName = "plugin:Generate Strings File Symbols";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 25A81D021C500E9B008E51B9 /* Project object */;
 }

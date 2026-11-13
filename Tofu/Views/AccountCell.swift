@@ -190,10 +190,7 @@ class AccountCell: UITableViewCell {
 
         updateColors()
 
-        let featureSettings: [[UIFontDescriptor.FeatureKey: Any]] =
-            [[.featureIdentifier: kNumberSpacingType, .typeIdentifier: kMonospacedNumbersSelector]]
-        let fontDescriptor = valueLabel.font.fontDescriptor.addingAttributes([.featureSettings: featureSettings])
-        valueLabel.font = UIFont(descriptor: fontDescriptor, size: 0)
+        valueLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 44.0, weight: .thin)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
         button.setTitle("NEXT", for: UIControl.State())
         button.setTitleColor(tintColor, for: UIControl.State())
@@ -202,8 +199,13 @@ class AccountCell: UITableViewCell {
         button.layer.borderColor = button.tintColor.cgColor
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 4
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = .init(top: 5.0, leading: 10.0, bottom: 5.0, trailing: 10.0)
+        config.cornerStyle = .fixed
+        button.configuration = config
         button.sizeToFit()
+
         let image = imageWithColor(tintColor, size: button.bounds.size)
         button.setBackgroundImage(image, for: .highlighted)
         button.setBackgroundImage(image, for: .selected)
