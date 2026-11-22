@@ -32,6 +32,8 @@
 		25A81D571C5DFC5C008E51B9 /* ScanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A81D561C5DFC5C008E51B9 /* ScanningViewController.swift */; };
 		25A81D5B1C5F656A008E51B9 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A81D5A1C5F656A008E51B9 /* CircularProgressView.swift */; };
 		25CF8B6C1C57946B00665FFE /* AlgorithmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF8B6B1C57946B00665FFE /* AlgorithmsViewController.swift */; };
+		501A8DCA30B34AE1006859F0 /* SUIAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A8DC830B34ADE006859F0 /* SUIAccountCell.swift */; };
+		501A8E4330B359D6006859F0 /* Account+ImageDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A8E4130B359CC006859F0 /* Account+ImageDatabase.swift */; };
 		5098665430A26E28006561AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098665330A26E25006561AC /* SceneDelegate.swift */; };
 		50C456A12B2325A0009C83C6 /* ExternalDataInterop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C456A02B2325A0009C83C6 /* ExternalDataInterop.swift */; };
 		50D6A1FF30A3566000FC19C3 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A1FE30A3566000FC19C3 /* FlowCoordinator.swift */; };
@@ -93,6 +95,8 @@
 		25A81D561C5DFC5C008E51B9 /* ScanningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanningViewController.swift; sourceTree = "<group>"; };
 		25A81D5A1C5F656A008E51B9 /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		25CF8B6B1C57946B00665FFE /* AlgorithmsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgorithmsViewController.swift; sourceTree = "<group>"; };
+		501A8DC830B34ADE006859F0 /* SUIAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUIAccountCell.swift; sourceTree = "<group>"; };
+		501A8E4130B359CC006859F0 /* Account+ImageDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+ImageDatabase.swift"; sourceTree = "<group>"; };
 		5098665330A26E25006561AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		50C456992B232054009C83C6 /* Tofu.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Tofu.xcconfig; path = Tofu/Tofu.xcconfig; sourceTree = "<group>"; };
 		50C456A02B2325A0009C83C6 /* ExternalDataInterop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDataInterop.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 		25A81D0C1C500E9C008E51B9 /* Tofu */ = {
 			isa = PBXGroup;
 			children = (
+				501A8DC530B34ACC006859F0 /* SwiftUI */,
 				50C4569B2B2324E2009C83C6 /* Extensions */,
 				50C4569C2B2324F3009C83C6 /* Protocols */,
 				50C4569D2B232507009C83C6 /* Models */,
@@ -192,9 +197,18 @@
 			path = TofuUITests;
 			sourceTree = "<group>";
 		};
+		501A8DC530B34ACC006859F0 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				501A8DC830B34ADE006859F0 /* SUIAccountCell.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		50C4569B2B2324E2009C83C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				501A8E4130B359CC006859F0 /* Account+ImageDatabase.swift */,
 				50D6A22330A3609E00FC19C3 /* URL.swift */,
 				25A81D441C53923D008E51B9 /* Data.swift */,
 				EB61B64C25D2BE15000B1735 /* UIViewController.swift */,
@@ -428,9 +442,11 @@
 				25A81D511C551F17008E51B9 /* AccountCell.swift in Sources */,
 				EB61B64D25D2BE15000B1735 /* UIViewController.swift in Sources */,
 				251A79871C7A68BC00E2747E /* AccountSearchResultsViewController.swift in Sources */,
+				501A8DCA30B34AE1006859F0 /* SUIAccountCell.swift in Sources */,
 				25A81D0E1C500E9C008E51B9 /* AppDelegate.swift in Sources */,
 				50D6A20230A3570600FC19C3 /* ImportFlow.swift in Sources */,
 				25A81D451C53923D008E51B9 /* Data.swift in Sources */,
+				501A8E4330B359D6006859F0 /* Account+ImageDatabase.swift in Sources */,
 				2506E6E51C6F9A5A00E694D3 /* Algorithm.swift in Sources */,
 				50D6A23730A3616600FC19C3 /* SwiftUI.swift in Sources */,
 				5098665430A26E28006561AC /* SceneDelegate.swift in Sources */,

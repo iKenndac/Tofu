@@ -6,6 +6,10 @@
 
 "CopyMenuItemTitle" = "Copy";
 
+// Accounts
+
+"NextHOTPButtonTitle" = "Next";
+
 // Importing Migration Archives
 
 "MigrationDocumentReadingFailedTitle" = "Invalid Migration Archive";
