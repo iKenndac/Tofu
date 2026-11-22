@@ -34,6 +34,7 @@
 		25CF8B6C1C57946B00665FFE /* AlgorithmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF8B6B1C57946B00665FFE /* AlgorithmsViewController.swift */; };
 		501A8DCA30B34AE1006859F0 /* SUIAccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A8DC830B34ADE006859F0 /* SUIAccountCell.swift */; };
 		501A8E4330B359D6006859F0 /* Account+ImageDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501A8E4130B359CC006859F0 /* Account+ImageDatabase.swift */; };
+		5072905430B386F1001B27CC /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5072905230B386E7001B27CC /* MainScene.swift */; };
 		5098665430A26E28006561AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098665330A26E25006561AC /* SceneDelegate.swift */; };
 		50C456A12B2325A0009C83C6 /* ExternalDataInterop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C456A02B2325A0009C83C6 /* ExternalDataInterop.swift */; };
 		50D6A1FF30A3566000FC19C3 /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D6A1FE30A3566000FC19C3 /* FlowCoordinator.swift */; };
@@ -97,6 +98,7 @@
 		25CF8B6B1C57946B00665FFE /* AlgorithmsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlgorithmsViewController.swift; sourceTree = "<group>"; };
 		501A8DC830B34ADE006859F0 /* SUIAccountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUIAccountCell.swift; sourceTree = "<group>"; };
 		501A8E4130B359CC006859F0 /* Account+ImageDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account+ImageDatabase.swift"; sourceTree = "<group>"; };
+		5072905230B386E7001B27CC /* MainScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
 		5098665330A26E25006561AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		50C456992B232054009C83C6 /* Tofu.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Tofu.xcconfig; path = Tofu/Tofu.xcconfig; sourceTree = "<group>"; };
 		50C456A02B2325A0009C83C6 /* ExternalDataInterop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDataInterop.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		501A8DC530B34ACC006859F0 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				5072905230B386E7001B27CC /* MainScene.swift */,
 				501A8DC830B34ADE006859F0 /* SUIAccountCell.swift */,
 			);
 			path = SwiftUI;
@@ -440,6 +443,7 @@
 				25A81D101C500E9C008E51B9 /* AccountsViewController.swift in Sources */,
 				259FAC521C765F4B0013B4F7 /* AccountUpdateDelegate.swift in Sources */,
 				25A81D511C551F17008E51B9 /* AccountCell.swift in Sources */,
+				5072905430B386F1001B27CC /* MainScene.swift in Sources */,
 				EB61B64D25D2BE15000B1735 /* UIViewController.swift in Sources */,
 				251A79871C7A68BC00E2747E /* AccountSearchResultsViewController.swift in Sources */,
 				501A8DCA30B34AE1006859F0 /* SUIAccountCell.swift in Sources */,

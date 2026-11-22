@@ -10,10 +10,13 @@ import Foundation
     var name: String?
     var issuer: String?
     var password = Password()
+    let uniqueId: UUID
 
-    override init() {}
+    override init() {
+        uniqueId = UUID()
+    }
 
-    init?(url: URL) {
+    init?(url: URL, uniqueIdOverride: UUID? = nil) {
         let label = url.path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
         guard let host = url.host, host == "hotp" || host == "totp" else { return nil }
         let labelComponents = label.components(separatedBy: ":")
@@ -25,6 +28,7 @@ import Foundation
 
         name = labelComponents.last?.trimmingCharacters(in: CharacterSet.whitespaces)
         issuer = labelComponents.count > 1 ? labelComponents.first : nil
+        uniqueId = (uniqueIdOverride ?? UUID())
         password.timeBased = host == "totp"
         for queryItem in queryItems {
             switch queryItem.name {
@@ -70,6 +74,8 @@ import Foundation
 
         name = coder.decodeObject(of: NSString.self, forKey: "name") as? String
         issuer = coder.decodeObject(of: NSString.self, forKey: "issuer") as? String
+        uniqueId = (coder.decodeObject(of: NSUUID.self, forKey: "uuid") as? UUID) ?? UUID()
+        // ^ Added in Tofu 2.1, transparent addition is fine.
     }
 
     func encode(with coder: NSCoder) {
@@ -81,6 +87,7 @@ import Foundation
         coder.encode(Int32(password.period), forKey: "period")
         coder.encode(name, forKey: "name")
         coder.encode(issuer, forKey: "issuer")
+        coder.encode(uniqueId, forKey: "uuid")
     }
 
     override func isEqual(_ object: Any?) -> Bool {

@@ -71,7 +71,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
 
-        MigrationImportController.presentImport(from: data, at: archiveUrl, into: Keychain().accounts,
+        MigrationImportController.presentImport(from: data, at: archiveUrl, into: Keychain().readAccounts(),
                                                 importedAccountDestination: accountDestination,
                                                 presentingIn: viewController, animated: true)
     }

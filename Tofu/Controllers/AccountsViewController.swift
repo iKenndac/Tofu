@@ -17,7 +17,7 @@ class AccountsViewController: UITableViewController, UIEditMenuInteractionDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        accounts = keychain.accounts
+        accounts = keychain.readAccounts()
         let sortedPersistentRefs = UserDefaults.standard.array(forKey: accountOrderKey) as? [Data] ?? []
         accounts.sort { a, b in
             let aIndex = sortedPersistentRefs.firstIndex(of: a.persistentRef! as Data) ?? 0

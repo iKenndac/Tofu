@@ -62,8 +62,8 @@ private func accountWithPersistentRef(_ persistentRef: Data) -> Account? {
     return account
 }
 
-class Keychain {
-    var accounts: [Account] {
+class Keychain: ObservableObject {
+    func readAccounts() -> [Account] {
         let query: [NSString: AnyObject] = [
             kSecClass: kSecClassGenericPassword,
             kSecReturnPersistentRef: kCFBooleanTrue,

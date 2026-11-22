@@ -8,6 +8,8 @@
 
 // Accounts
 
+"AccountsViewTitle" = "Accounts";
+"SearchFieldPlaceholder" = "Search";
 "NextHOTPButtonTitle" = "Next";
 
 // Importing Migration Archives

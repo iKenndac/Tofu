@@ -18,6 +18,12 @@ extension Color {
 }
 
 extension View {
+
+    /// Escapes a viewbuilder into a regular closure. Useful for doing #available(…) modifiers.
+    @ViewBuilder func inClosure<Content: View>(@ViewBuilder _ transform: (Self) -> Content) -> some View {
+        transform(self)
+    }
+
     /// Applies the given transform if the given condition evaluates to `true`.
     /// - Parameters:
     ///   - condition: The condition to evaluate.
